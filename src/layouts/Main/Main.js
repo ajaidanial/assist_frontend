@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/styles';
-import { useMediaQuery } from '@material-ui/core';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import clsx from 'clsx'
+import { makeStyles, useTheme } from '@material-ui/styles'
+import { useMediaQuery } from '@material-ui/core'
 
-import { Sidebar, Topbar, Footer } from './components';
+import { Sidebar, Topbar, Footer } from './components'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: 56,
     height: '100%',
@@ -20,28 +20,28 @@ const useStyles = makeStyles(theme => ({
   content: {
     height: '100%'
   }
-}));
+}))
 
-const Main = props => {
-  const { children } = props;
+const Main = (props) => {
+  const { children } = props
 
-  const classes = useStyles();
-  const theme = useTheme();
+  const classes = useStyles()
+  const theme = useTheme()
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
     defaultMatches: true
-  });
+  })
 
-  const [openSidebar, setOpenSidebar] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false)
 
   const handleSidebarOpen = () => {
-    setOpenSidebar(true);
-  };
+    setOpenSidebar(true)
+  }
 
   const handleSidebarClose = () => {
-    setOpenSidebar(false);
-  };
+    setOpenSidebar(false)
+  }
 
-  const shouldOpenSidebar = isDesktop ? true : openSidebar;
+  const shouldOpenSidebar = isDesktop ? true : openSidebar
 
   return (
     <div
@@ -61,11 +61,11 @@ const Main = props => {
         <Footer />
       </main>
     </div>
-  );
-};
+  )
+}
 
 Main.propTypes = {
   children: PropTypes.node
-};
+}
 
-export default Main;
+export default Main

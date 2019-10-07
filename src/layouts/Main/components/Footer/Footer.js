@@ -16,18 +16,11 @@ const Footer = props => {
   const classes = useStyles();
 
   return (
-    <div
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <div {...rest} className={clsx(classes.root, className)}>
       <Typography variant="body1">
         &copy;{' '}
-        <Link
-          component="a"
-          href="https://devias.io/"
-          target="_blank"
-        >
-          Devias IO
+        <Link component="a" href="https://devias.io/" target="_blank">
+          Mr.Assist
         </Link>
         . 2019
       </Typography>
