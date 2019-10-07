@@ -5,16 +5,14 @@ import validate from 'validate.js'
 import { makeStyles } from '@material-ui/styles'
 import { Grid, Button, TextField, Link, Typography } from '@material-ui/core'
 
-import { schema } from './schema'
-import { styles } from './styles'
-
-const useStyles = makeStyles(styles)
+import { schema } from './schema' // for form validation
+import { styles } from './styles' // for styling the components
 
 const SignIn = (props) => {
   const { history } = props
-
-  const classes = useStyles()
-
+  // The styles for the components
+  const classes = makeStyles(styles)()
+  // The state for the whole page
   const [formState, setFormState] = useState({
     isValid: false,
     values: {},
@@ -22,9 +20,12 @@ const SignIn = (props) => {
     errors: {}
   })
 
+  /**
+   * Validates the given data against the `schema`.
+   * Sets the errors in the state.
+   */
   useEffect(() => {
     const errors = validate(formState.values, schema)
-
     setFormState((formState) => ({
       ...formState,
       isValid: errors ? false : true,
@@ -32,17 +33,18 @@ const SignIn = (props) => {
     }))
   }, [formState.values])
 
+  /**
+   * Called on change of values in input fields.
+   * Stores values to the state.
+   * @param {form change event} event
+   */
   const handleChange = (event) => {
     event.persist()
-
     setFormState((formState) => ({
       ...formState,
       values: {
         ...formState.values,
-        [event.target.name]:
-          event.target.type === 'checkbox'
-            ? event.target.checked
-            : event.target.value
+        [event.target.name]: event.target.value
       },
       touched: {
         ...formState.touched,
@@ -51,11 +53,20 @@ const SignIn = (props) => {
     }))
   }
 
+  /**
+   * Handles the successful form submit.
+   * @param {form submit event} event
+   */
   const handleSignIn = (event) => {
     event.preventDefault()
-    history.push('/')
+    // history.push('/')
+    alert('work here')
   }
 
+  /**
+   * Returns a bool if the input field has errors
+   * @param {`name` of input} field
+   */
   const hasError = (field) =>
     formState.touched[field] && formState.errors[field] ? true : false
 
