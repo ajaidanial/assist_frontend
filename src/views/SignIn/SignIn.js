@@ -3,17 +3,7 @@ import { Link as RouterLink, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import validate from 'validate.js'
 import { makeStyles } from '@material-ui/styles'
-import {
-  Grid,
-  Button,
-  IconButton,
-  TextField,
-  Link,
-  Typography
-} from '@material-ui/core'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-
-import { Facebook as FacebookIcon, Google as GoogleIcon } from 'icons'
+import { Grid, Button, TextField, Link, Typography } from '@material-ui/core'
 
 const schema = {
   email: {
@@ -26,7 +16,8 @@ const schema = {
   password: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
-      maximum: 128
+      maximum: 128,
+      minimum: 8
     }
   }
 }
