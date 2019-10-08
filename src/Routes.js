@@ -1,7 +1,8 @@
 import React from 'react'
-import { Switch, Redirect } from 'react-router-dom'
+import { Switch, Redirect, Route } from 'react-router-dom'
 
-import { RouteWithLayout, ProtectedRoute } from './components'
+// Custom defined routes for authentication
+import { ProtectedLayoutRoute, PublicLayoutRoute } from './components'
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts'
 
 import {
@@ -24,71 +25,71 @@ const Routes = () => {
   return (
     <Switch>
       <Redirect exact from="/" to="/dashboard" />
-      <ProtectedRoute
+      <ProtectedLayoutRoute
         component={DashboardView}
         exact
         layout={MainLayout}
         path="/dashboard"
       />
       {/* Main Views */}
-      <RouteWithLayout
+      <ProtectedLayoutRoute
         component={SettingsView}
         exact
         layout={MainLayout}
         path="/settings"
       />
-      <RouteWithLayout
+      <ProtectedLayoutRoute
         component={TasksView}
         exact
         layout={MainLayout}
         path="/tasks"
       />
-      <RouteWithLayout
+      <ProtectedLayoutRoute
         component={RemindersView}
         exact
         layout={MainLayout}
         path="/reminders"
       />
-      <RouteWithLayout
+      <ProtectedLayoutRoute
         component={TransactionsView}
         exact
         layout={MainLayout}
         path="/transactions"
       />
       {/* Individual Views */}
-      <RouteWithLayout
+      <ProtectedLayoutRoute
         component={TransactionItemView}
         exact
         layout={MainLayout}
         path="/transactions/:id"
       />
-      <RouteWithLayout
+      <ProtectedLayoutRoute
         component={TaskItemView}
         exact
         layout={MainLayout}
         path="/tasks/:id"
       />
-      <RouteWithLayout
+      <ProtectedLayoutRoute
         component={ReminderItemView}
         exact
         layout={MainLayout}
         path="/reminders/:id"
       />
       {/* Auth Views */}
-      <RouteWithLayout
+      <PublicLayoutRoute
         component={SignUpView}
         exact
         layout={MinimalLayout}
         path="/sign-up"
       />
-      <RouteWithLayout
+      <PublicLayoutRoute
         component={SignInView}
         exact
         layout={MinimalLayout}
         path="/sign-in"
       />
       {/* Not Found View */}
-      <RouteWithLayout
+      <Route
         component={NotFoundView}
         exact
         layout={MinimalLayout}
