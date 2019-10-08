@@ -47,5 +47,11 @@ export const styles = (theme) => ({
   },
   signUpButton: {
     margin: theme.spacing(3, 0)
+  },
+  rowContainerLeft: {
+    paddingRight: theme.spacing(1)
+  },
+  rowContainerRight: {
+    paddingLeft: theme.spacing(1)
   }
 })

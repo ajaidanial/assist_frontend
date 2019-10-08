@@ -8,8 +8,7 @@ import { Grid, Button, TextField, Link, Typography } from '@material-ui/core'
 import { schema } from './schema' // schema for the form data
 import { styles } from './styles' // styles for the components
 
-const SignUp = (props) => {
-  const { history } = props
+const SignUp = () => {
   // for styling the components
   const classes = makeStyles(styles)()
   // the state for the whole page
@@ -59,7 +58,7 @@ const SignUp = (props) => {
    */
   const handleSignUp = (event) => {
     event.preventDefault()
-    history.push('/')
+    alert('work here')
   }
 
   /**
@@ -72,41 +71,51 @@ const SignUp = (props) => {
   return (
     <div className={classes.root}>
       <Grid className={classes.grid} container>
-        <Grid className={classes.content} item lg={12} xs={12}>
+        <Grid className={classes.content} item xs={12}>
           <div className={classes.content}>
             <div className={classes.contentBody}>
               <form className={classes.form} onSubmit={handleSignUp}>
                 <Typography className={classes.title} variant="h2">
                   Create new account
                 </Typography>
-                <TextField
-                  className={classes.textField}
-                  error={hasError('firstName')}
-                  fullWidth
-                  helperText={
-                    hasError('firstName') ? formState.errors.firstName[0] : null
-                  }
-                  label="First name"
-                  name="firstName"
-                  onChange={handleChange}
-                  type="text"
-                  value={formState.values.firstName || ''}
-                  variant="outlined"
-                />
-                <TextField
-                  className={classes.textField}
-                  error={hasError('lastName')}
-                  fullWidth
-                  helperText={
-                    hasError('lastName') ? formState.errors.lastName[0] : null
-                  }
-                  label="Last name"
-                  name="lastName"
-                  onChange={handleChange}
-                  type="text"
-                  value={formState.values.lastName || ''}
-                  variant="outlined"
-                />
+                <Grid container>
+                  <Grid className={classes.rowContainerLeft} item xs={6}>
+                    <TextField
+                      className={classes.textField}
+                      error={hasError('firstName')}
+                      fullWidth
+                      helperText={
+                        hasError('firstName')
+                          ? formState.errors.firstName[0]
+                          : null
+                      }
+                      label="First name"
+                      name="firstName"
+                      onChange={handleChange}
+                      type="text"
+                      value={formState.values.firstName || ''}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid className={classes.rowContainerRight} item xs={6}>
+                    <TextField
+                      className={classes.textField}
+                      error={hasError('lastName')}
+                      fullWidth
+                      helperText={
+                        hasError('lastName')
+                          ? formState.errors.lastName[0]
+                          : null
+                      }
+                      label="Last name"
+                      name="lastName"
+                      onChange={handleChange}
+                      type="text"
+                      value={formState.values.lastName || ''}
+                      variant="outlined"
+                    />
+                  </Grid>
+                </Grid>
                 <TextField
                   className={classes.textField}
                   error={hasError('email')}

@@ -8,8 +8,7 @@ import { Grid, Button, TextField, Link, Typography } from '@material-ui/core'
 import { schema } from './schema' // for form validation
 import { styles } from './styles' // for styling the components
 
-const SignIn = (props) => {
-  const { history } = props
+const SignIn = () => {
   // The styles for the components
   const classes = makeStyles(styles)()
   // The state for the whole page
@@ -59,7 +58,6 @@ const SignIn = (props) => {
    */
   const handleSignIn = (event) => {
     event.preventDefault()
-    // history.push('/')
     alert('work here')
   }
 
@@ -73,7 +71,7 @@ const SignIn = (props) => {
   return (
     <div className={classes.root}>
       <Grid className={classes.grid} container>
-        <Grid className={classes.content} item lg={12} xs={12}>
+        <Grid className={classes.content} item xs={12}>
           <div className={classes.content}>
             <div className={classes.contentBody}>
               <form className={classes.form} onSubmit={handleSignIn}>
