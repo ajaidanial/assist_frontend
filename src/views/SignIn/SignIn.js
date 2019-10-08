@@ -68,6 +68,19 @@ const SignIn = () => {
       'POST',
       '/api/get_auth_token/'
     )
+      .then((response) => {
+        // On response.status === 200
+        // TODO: handle success function
+        console.log(response, 'from sign in page result')
+      })
+      .catch((error) => {
+        console.log(
+          'Error from sign in page.',
+          error,
+          error.response,
+          error.request
+        )
+      })
   }
 
   /**

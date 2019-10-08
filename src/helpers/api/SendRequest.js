@@ -1,7 +1,13 @@
 const axios = require('axios')
+// The server address
 const server = 'http://localhost:8000'
 
 /**
+ * Basically the method used to send requests to the server
+ * Returns the data => If response.status === 200
+ * Handles the other messages here itelf.
+ * Calls the Models, Toasts | if necessary
+ *
  * @param {string} method - method of the request => GET, POST, DELETE, PUT, PATCH
  * @param {string} endPoint - the end point of the API
  * @param {object} data - data to be sent
@@ -17,14 +23,14 @@ export default function SendRequest(
     'Content-Type': 'application/json'
   }
 
-  // Get the authToken and add it to header
-  // Skips if includeToken is false
+  // Gets the authToken and add it to header
+  // Skiped if includeToken is false
   if (includeToken) {
     // Work on getting data from session storage
     headers.Authorization = `JWT ${localStorage.getItem('token')}`
   }
 
-  axios({
+  return axios({
     method,
     url: `${server}${endPoint}`,
     headers,
@@ -32,21 +38,24 @@ export default function SendRequest(
   })
     .then((response) => {
       if (response.status === 200) {
-        alert('Success')
-        console.log(response.data, 'received data')
-        // TODO: work on getting the data out
+        return response
       } else {
-        alert('Handle other responses.')
+        alert('Handle other responses => SendRequest func.')
       }
       console.log(response)
       console.log(response.data)
     })
     .catch((error) => {
       alert('Handle errors.')
-      console.log(error)
-      console.log(error.response)
+      console.log(
+        'Error from SendRequest func.',
+        error,
+        error.response,
+        error.request
+      )
     })
 }
 
 // TODO: Modals
 // TODO: Toast
+// TODO: Store Token
