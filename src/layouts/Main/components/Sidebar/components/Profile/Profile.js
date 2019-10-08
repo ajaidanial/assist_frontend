@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 'fit-content'
   },
   avatar: {
-    width: 60,
-    height: 60
+    width: 100,
+    height: 100
   },
   name: {
     marginTop: theme.spacing(1)
@@ -27,9 +27,9 @@ const Profile = (props) => {
   const classes = useStyles()
 
   const user = {
-    name: 'Shen Zhi',
+    name: 'Full Name',
     avatar: '/images/avatars/avatar_11.png',
-    bio: 'Brain Director'
+    username: 'username'
   }
 
   return (
@@ -44,7 +44,7 @@ const Profile = (props) => {
       <Typography className={classes.name} variant="h4">
         {user.name}
       </Typography>
-      <Typography variant="body2">{user.bio}</Typography>
+      <Typography variant="body2">{user.username}</Typography>
     </div>
   )
 }

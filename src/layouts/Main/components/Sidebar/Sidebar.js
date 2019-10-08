@@ -3,14 +3,12 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { Divider, Drawer } from '@material-ui/core'
-import DashboardIcon from '@material-ui/icons/Dashboard'
-import PeopleIcon from '@material-ui/icons/People'
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
-import TextFieldsIcon from '@material-ui/icons/TextFields'
-import ImageIcon from '@material-ui/icons/Image'
-import AccountBoxIcon from '@material-ui/icons/AccountBox'
-import SettingsIcon from '@material-ui/icons/Settings'
-import LockOpenIcon from '@material-ui/icons/LockOpen'
+// Icons for the sidebar
+import AlarmOutlined from '@material-ui/icons/AlarmOutlined'
+import MonetizationOnOutlined from '@material-ui/icons/MonetizationOnOutlined'
+import HomeOutlined from '@material-ui/icons/HomeOutlined'
+import SettingsOutlined from '@material-ui/icons/SettingsOutlined'
+import AssignmentTurnedInOutlined from '@material-ui/icons/AssignmentTurnedInOutlined'
 
 import { Profile, SidebarNav } from './components'
 
@@ -46,42 +44,27 @@ const Sidebar = (props) => {
     {
       title: 'Dashboard',
       href: '/dashboard',
-      icon: <DashboardIcon />
+      icon: <HomeOutlined />
     },
     {
-      title: 'Users',
-      href: '/users',
-      icon: <PeopleIcon />
+      title: 'Transactions',
+      href: '/transactions',
+      icon: <MonetizationOnOutlined />
     },
     {
-      title: 'Products',
-      href: '/products',
-      icon: <ShoppingBasketIcon />
+      title: 'Tasks',
+      href: '/tasks',
+      icon: <AssignmentTurnedInOutlined />
     },
     {
-      title: 'Authentication',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
-    },
-    {
-      title: 'Typography',
-      href: '/typography',
-      icon: <TextFieldsIcon />
-    },
-    {
-      title: 'Icons',
-      href: '/icons',
-      icon: <ImageIcon />
-    },
-    {
-      title: 'Account',
-      href: '/account',
-      icon: <AccountBoxIcon />
+      title: 'Reminders',
+      href: '/reminders',
+      icon: <AlarmOutlined />
     },
     {
       title: 'Settings',
       href: '/settings',
-      icon: <SettingsIcon />
+      icon: <SettingsOutlined />
     }
   ]
 
