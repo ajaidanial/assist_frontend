@@ -16,6 +16,10 @@ export const schema = {
     length: {
       maximum: 32,
       minimum: 8
+    },
+    format: {
+      pattern: '[a-z0-9]+',
+      message: 'can only contain a-z and 0-9, without spaces'
     }
   },
   email: {
