@@ -85,7 +85,7 @@ const SignIn = () => {
                   helperText={
                     hasError('email') ? formState.errors.email[0] : null
                   }
-                  label="Email address"
+                  label="Email Address"
                   name="email"
                   onChange={handleChange}
                   type="text"

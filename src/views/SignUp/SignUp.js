@@ -89,7 +89,7 @@ const SignUp = () => {
                           ? formState.errors.firstName[0]
                           : null
                       }
-                      label="First name"
+                      label="First Name"
                       name="firstName"
                       onChange={handleChange}
                       type="text"
@@ -107,7 +107,7 @@ const SignUp = () => {
                           ? formState.errors.lastName[0]
                           : null
                       }
-                      label="Last name"
+                      label="Last Name"
                       name="lastName"
                       onChange={handleChange}
                       type="text"
@@ -118,12 +118,26 @@ const SignUp = () => {
                 </Grid>
                 <TextField
                   className={classes.textField}
+                  error={hasError('username')}
+                  fullWidth
+                  helperText={
+                    hasError('username') ? formState.errors.username[0] : null
+                  }
+                  label="Username"
+                  name="username"
+                  onChange={handleChange}
+                  type="text"
+                  value={formState.values.username || ''}
+                  variant="outlined"
+                />
+                <TextField
+                  className={classes.textField}
                   error={hasError('email')}
                   fullWidth
                   helperText={
                     hasError('email') ? formState.errors.email[0] : null
                   }
-                  label="Email address"
+                  label="Email Address"
                   name="email"
                   onChange={handleChange}
                   type="text"
