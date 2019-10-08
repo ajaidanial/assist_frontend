@@ -35,5 +35,13 @@ export const schema = {
       maximum: 128,
       minimum: 8
     }
+  },
+  confirmPassword: {
+    presence: { allowEmpty: false, message: 'is required' },
+    length: {
+      maximum: 128,
+      minimum: 8
+    },
+    equality: 'password'
   }
 }

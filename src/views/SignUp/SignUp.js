@@ -144,20 +144,46 @@ const SignUp = () => {
                   value={formState.values.email || ''}
                   variant="outlined"
                 />
-                <TextField
-                  className={classes.textField}
-                  error={hasError('password')}
-                  fullWidth
-                  helperText={
-                    hasError('password') ? formState.errors.password[0] : null
-                  }
-                  label="Password"
-                  name="password"
-                  onChange={handleChange}
-                  type="password"
-                  value={formState.values.password || ''}
-                  variant="outlined"
-                />
+
+                <Grid container>
+                  <Grid className={classes.rowContainerLeft} item xs={6}>
+                    <TextField
+                      className={classes.textField}
+                      error={hasError('password')}
+                      fullWidth
+                      helperText={
+                        hasError('password')
+                          ? formState.errors.password[0]
+                          : null
+                      }
+                      label="Password"
+                      name="password"
+                      onChange={handleChange}
+                      type="password"
+                      value={formState.values.password || ''}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid className={classes.rowContainerRight} item xs={6}>
+                    <TextField
+                      className={classes.textField}
+                      error={hasError('confirmPassword')}
+                      fullWidth
+                      helperText={
+                        hasError('confirmPassword')
+                          ? formState.errors.confirmPassword[0]
+                          : null
+                      }
+                      label="Confirm Password"
+                      name="confirmPassword"
+                      onChange={handleChange}
+                      type="confirmPassword"
+                      value={formState.values.confirmPassword || ''}
+                      variant="outlined"
+                    />
+                  </Grid>
+                </Grid>
+
                 <Button
                   className={classes.signUpButton}
                   color="primary"
