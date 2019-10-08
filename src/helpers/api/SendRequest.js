@@ -14,8 +14,7 @@ export default function SendRequest(
   includeToken = true
 ) {
   const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
+    'Content-Type': 'application/json'
   }
 
   // Get the authToken and add it to header
@@ -48,3 +47,6 @@ export default function SendRequest(
       console.log(error.response)
     })
 }
+
+// TODO: Modals
+// TODO: Toast

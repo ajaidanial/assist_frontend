@@ -58,8 +58,16 @@ const SignIn = () => {
    * @param {form submit event} event
    */
   const handleSignIn = (event) => {
+    const { username, password } = event.target
     event.preventDefault()
-    SendRequest({}, 'POST', '/api/get_auth_token/')
+    SendRequest(
+      {
+        username: username.value,
+        password: password.value
+      },
+      'POST',
+      '/api/get_auth_token/'
+    )
   }
 
   /**
