@@ -177,7 +177,7 @@ const SignUp = () => {
                       label="Confirm Password"
                       name="confirmPassword"
                       onChange={handleChange}
-                      type="confirmPassword"
+                      type="password"
                       value={formState.values.confirmPassword || ''}
                       variant="outlined"
                     />
