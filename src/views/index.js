@@ -9,3 +9,5 @@ export { default as Reminders } from './Reminders'
 export { default as Transactions } from './Transactions'
 // Individual Views
 export { default as TransactionItem } from './TransactionItem'
+export { default as TaskItem } from './TaskItem'
+export { default as ReminderItem } from './ReminderItem'

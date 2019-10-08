@@ -15,7 +15,9 @@ import {
   Reminders as RemindersView,
   Transactions as TransactionsView,
   // Individual Views
-  TransactionItem as TransactionItemView
+  TransactionItem as TransactionItemView,
+  TaskItem as TaskItemView,
+  ReminderItem as ReminderItemView
 } from './views'
 
 const Routes = () => {
@@ -59,6 +61,18 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/transactions/:id"
+      />
+      <RouteWithLayout
+        component={TaskItemView}
+        exact
+        layout={MainLayout}
+        path="/tasks/:id"
+      />
+      <RouteWithLayout
+        component={ReminderItemView}
+        exact
+        layout={MainLayout}
+        path="/reminders/:id"
       />
       {/* Auth Views */}
       <RouteWithLayout
