@@ -1,16 +1,16 @@
 export const schema = {
-  email: {
+  username: {
     presence: { allowEmpty: false, message: 'is required' },
-    email: true,
     length: {
-      maximum: 64
+      maximum: 32,
+      minimum: 5
     }
   },
   password: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 128,
-      minimum: 8
+      minimum: 5
     }
   }
 }

@@ -47,8 +47,8 @@ const ProtectedLayoutRoute = (props) => {
 }
 
 ProtectedLayoutRoute.propTypes = {
-  component: PropTypes.object,
-  layout: PropTypes.object,
+  component: PropTypes.func,
+  layout: PropTypes.func,
   location: PropTypes.object
 }
 

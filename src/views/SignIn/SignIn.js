@@ -7,6 +7,7 @@ import { Grid, Button, TextField, Link, Typography } from '@material-ui/core'
 
 import { schema } from './schema' // for form validation
 import { styles } from './styles' // for styling the components
+import { SendRequest } from '../../helpers/api' // To send requests to server
 
 const SignIn = () => {
   // The styles for the components
@@ -58,7 +59,7 @@ const SignIn = () => {
    */
   const handleSignIn = (event) => {
     event.preventDefault()
-    alert('work here')
+    SendRequest({}, 'POST', '/api/get_auth_token/')
   }
 
   /**
@@ -80,16 +81,16 @@ const SignIn = () => {
                 </Typography>
                 <TextField
                   className={classes.textField}
-                  error={hasError('email')}
+                  error={hasError('username')}
                   fullWidth
                   helperText={
-                    hasError('email') ? formState.errors.email[0] : null
+                    hasError('username') ? formState.errors.username[0] : null
                   }
-                  label="Email Address"
-                  name="email"
+                  label="Username"
+                  name="username"
                   onChange={handleChange}
                   type="text"
-                  value={formState.values.email || ''}
+                  value={formState.values.username || ''}
                   variant="outlined"
                 />
                 <TextField

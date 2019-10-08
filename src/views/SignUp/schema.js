@@ -15,7 +15,7 @@ export const schema = {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 32,
-      minimum: 8
+      minimum: 5
     },
     format: {
       pattern: '[a-z0-9]+',
@@ -33,14 +33,14 @@ export const schema = {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 128,
-      minimum: 8
+      minimum: 5
     }
   },
   confirmPassword: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 128,
-      minimum: 8
+      minimum: 5
     },
     equality: 'password'
   }

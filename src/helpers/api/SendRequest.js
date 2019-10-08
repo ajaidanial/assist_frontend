@@ -1,5 +1,5 @@
 const axios = require('axios')
-const server = 'http://52.66.73.132'
+const server = 'http://localhost:8000'
 
 /**
  * @param {string} method - method of the request => GET, POST, DELETE, PUT, PATCH
@@ -14,7 +14,8 @@ export default function SendRequest(
   includeToken = true
 ) {
   const headers = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
   }
 
   // Get the authToken and add it to header
