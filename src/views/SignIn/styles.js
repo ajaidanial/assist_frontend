@@ -12,17 +12,6 @@ export const styles = (theme) => ({
     display: 'flex',
     flexDirection: 'column'
   },
-  contentHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingTop: theme.spacing(5),
-    paddingBototm: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
-  },
-  logoImage: {
-    marginLeft: theme.spacing(4)
-  },
   contentBody: {
     flexGrow: 1,
     display: 'flex',
