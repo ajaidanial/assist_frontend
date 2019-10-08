@@ -6,13 +6,16 @@ import { Main as MainLayout, Minimal as MinimalLayout } from './layouts'
 
 import {
   Dashboard as DashboardView,
+  // Main Views
   Settings as SettingsView,
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView,
   Tasks as TasksView,
   Reminders as RemindersView,
-  Transactions as TransactionsView
+  Transactions as TransactionsView,
+  // Individual Views
+  TransactionItem as TransactionItemView
 } from './views'
 
 const Routes = () => {
@@ -25,6 +28,7 @@ const Routes = () => {
         layout={MainLayout}
         path="/dashboard"
       />
+      {/* Main Views */}
       <RouteWithLayout
         component={SettingsView}
         exact
@@ -49,6 +53,14 @@ const Routes = () => {
         layout={MainLayout}
         path="/transactions"
       />
+      {/* Individual Views */}
+      <RouteWithLayout
+        component={TransactionItemView}
+        exact
+        layout={MainLayout}
+        path="/transactions/:id"
+      />
+      {/* Auth Views */}
       <RouteWithLayout
         component={SignUpView}
         exact
@@ -61,6 +73,7 @@ const Routes = () => {
         layout={MinimalLayout}
         path="/sign-in"
       />
+      {/* Not Found View */}
       <RouteWithLayout
         component={NotFoundView}
         exact
@@ -73,3 +86,5 @@ const Routes = () => {
 }
 
 export default Routes
+
+// TODO: Protected Routes
