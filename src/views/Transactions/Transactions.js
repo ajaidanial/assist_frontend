@@ -7,10 +7,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Dashboard = () => {
+const Transactions = () => {
   const classes = useStyles()
 
-  return <div className={classes.root}>Dashboard Page</div>
+  return <div className={classes.root}>Transactions Page</div>
 }
 
-export default Dashboard
+export default Transactions

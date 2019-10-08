@@ -6,15 +6,13 @@ import { Main as MainLayout, Minimal as MinimalLayout } from './layouts'
 
 import {
   Dashboard as DashboardView,
-  ProductList as ProductListView,
-  UserList as UserListView,
-  Typography as TypographyView,
-  Icons as IconsView,
-  Account as AccountView,
   Settings as SettingsView,
   SignUp as SignUpView,
   SignIn as SignInView,
-  NotFound as NotFoundView
+  NotFound as NotFoundView,
+  Tasks as TasksView,
+  Reminders as RemindersView,
+  Transactions as TransactionsView
 } from './views'
 
 const Routes = () => {
@@ -28,40 +26,28 @@ const Routes = () => {
         path="/dashboard"
       />
       <RouteWithLayout
-        component={UserListView}
-        exact
-        layout={MainLayout}
-        path="/users"
-      />
-      <RouteWithLayout
-        component={ProductListView}
-        exact
-        layout={MainLayout}
-        path="/products"
-      />
-      <RouteWithLayout
-        component={TypographyView}
-        exact
-        layout={MainLayout}
-        path="/typography"
-      />
-      <RouteWithLayout
-        component={IconsView}
-        exact
-        layout={MainLayout}
-        path="/icons"
-      />
-      <RouteWithLayout
-        component={AccountView}
-        exact
-        layout={MainLayout}
-        path="/account"
-      />
-      <RouteWithLayout
         component={SettingsView}
         exact
         layout={MainLayout}
         path="/settings"
+      />
+      <RouteWithLayout
+        component={TasksView}
+        exact
+        layout={MainLayout}
+        path="/tasks"
+      />
+      <RouteWithLayout
+        component={RemindersView}
+        exact
+        layout={MainLayout}
+        path="/reminders"
+      />
+      <RouteWithLayout
+        component={TransactionsView}
+        exact
+        layout={MainLayout}
+        path="/transactions"
       />
       <RouteWithLayout
         component={SignUpView}

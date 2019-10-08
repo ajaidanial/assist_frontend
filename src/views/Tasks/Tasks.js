@@ -7,10 +7,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Dashboard = () => {
+const Tasks = () => {
   const classes = useStyles()
 
-  return <div className={classes.root}>Dashboard Page</div>
+  return <div className={classes.root}>Tasks Page</div>
 }
 
-export default Dashboard
+export default Tasks
