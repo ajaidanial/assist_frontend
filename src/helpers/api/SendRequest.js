@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+import { getErrors } from './getErrors'
+
 const axios = require('axios')
 // The server address
 const server = 'http://localhost:8000'
@@ -56,14 +58,18 @@ export default function SendRequest(
       }
     })
     .catch((error) => {
-      // Handle errors here
-      alert('Handle errors from SendRequest func.')
-      console.log(
-        'Error from SendRequest func.',
-        error,
-        error.response,
-        error.request
-      )
+      // console.log(
+      //   'Error from SendRequest func.',
+      //   error,
+      //   error.response,
+      //   error.request
+      // )
+      const { data } = error.response // errors from response
+      let errors = [] // the array of errors
+      getErrors(data, errors)
+
+      console.log(errors)
+
       return {
         success: false,
         ...error.response
