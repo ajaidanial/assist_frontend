@@ -13,6 +13,7 @@ import Routes from './Routes'
 
 // Get the common components used in the app
 import { AppModal } from './components'
+import { ToastContainer } from 'react-toastify' // Toast
 
 const browserHistory = createBrowserHistory()
 
@@ -31,7 +32,10 @@ export default class App extends Component {
       <ThemeProvider theme={theme}>
         <Router history={browserHistory}>
           {/* The Common Components */}
+          {/* Modal Dialog */}
           <AppModal />
+          {/* Toast Dialog */}
+          <ToastContainer />
           {/* The routes */}
           <Routes />
         </Router>
