@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { getErrors } from './getErrors'
+import { showAppToast } from '../../components'
 
 const axios = require('axios')
 // The server address
@@ -64,11 +65,17 @@ export default function SendRequest(
       //   error.response,
       //   error.request
       // )
+
       const { data } = error.response // errors from response
       let errors = [] // the array of errors
-      getErrors(data, errors)
+      getErrors(data, errors) // the errors will have a list of errors at the end of func
 
-      console.log(errors)
+      if (errors.length === 1) {
+        showAppToast(errors[0], 'error')
+      } else {
+        // Use AppModal here
+        alert('Handle more errors => SendRequest func')
+      }
 
       return {
         success: false,
@@ -76,6 +83,3 @@ export default function SendRequest(
       }
     })
 }
-
-// TODO: Modals
-// TODO: Toast
