@@ -9,7 +9,9 @@ import { schema } from './schema' // for form validation
 import { styles } from './styles' // for styling the components
 import { SendRequest } from '../../helpers/api' // To send requests to server
 
-const SignIn = () => {
+const SignIn = (props) => {
+  // The react-router history
+  const { history } = props
   // The styles for the components
   const classes = makeStyles(styles)()
   // The state for the whole page
@@ -69,9 +71,11 @@ const SignIn = () => {
       '/api/get_auth_token/'
     )
       .then((response) => {
-        // On response.status === 200
-        // TODO: handle success function
-        console.log(response, 'from sign in page result')
+        // Sign In operation
+        if (response.success) {
+          sessionStorage.setItem('token', response.data.token)
+          history.push('/sign-in')
+        }
       })
       .catch((error) => {
         console.log(

@@ -19,7 +19,7 @@ const ProtectedLayoutRoute = (props) => {
     <Route
       {...rest}
       render={(props) => {
-        if (localStorage.getItem('token')) {
+        if (sessionStorage.getItem('token')) {
           // TODO: validate auth token operations here
           // Renders the current page with the layout.
           return (

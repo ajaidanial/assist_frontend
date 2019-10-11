@@ -7,6 +7,7 @@ import { Grid, Button, TextField, Link, Typography } from '@material-ui/core'
 
 import { schema } from './schema' // schema for the form data
 import { styles } from './styles' // styles for the components
+import { SendRequest } from '../../helpers/api' // To send requests to server
 
 const SignUp = () => {
   // for styling the components
@@ -57,8 +58,33 @@ const SignUp = () => {
    * @param {form submit event} event
    */
   const handleSignUp = (event) => {
+    const { username, password, firstName, lastName, email } = event.target
     event.preventDefault()
-    alert('work here')
+    SendRequest(
+      {
+        username: username.value,
+        password: password.value,
+        first_name: firstName.value,
+        last_name: lastName.value,
+        email: email.value
+      },
+      'POST',
+      '/api/users/'
+    )
+      .then((response) => {
+        // Sign Up operation
+        if (response.success) {
+          alert('Success => Sign Up')
+        }
+      })
+      .catch((error) => {
+        console.log(
+          'Error from sign up page.',
+          error,
+          error.response,
+          error.request
+        )
+      })
   }
 
   /**

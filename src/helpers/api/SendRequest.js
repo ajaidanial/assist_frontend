@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const axios = require('axios')
 // The server address
 const server = 'http://localhost:8000'
@@ -26,9 +27,12 @@ export default function SendRequest(
   // Gets the authToken and add it to header
   // Skiped if includeToken is false
   if (includeToken) {
-    // Work on getting data from session storage
-    headers.Authorization = `JWT ${localStorage.getItem('token')}`
+    headers.Authorization = `JWT ${sessionStorage.getItem('token')}`
   }
+
+  // Constainst the success statuses
+  // If response.status is in this object => passes to the outer function
+  const successfulStatuses = [200, 201]
 
   return axios({
     method,
@@ -37,25 +41,35 @@ export default function SendRequest(
     data
   })
     .then((response) => {
-      if (response.status === 200) {
-        return response
+      console.log('Response from SendRequest func.', response)
+      // variable that tells the outer function if request was successfull
+      let isSuccessful = false
+      // Logics of the requests
+      if (successfulStatuses.includes(response.status)) {
+        isSuccessful = true
       } else {
         alert('Handle other responses => SendRequest func.')
       }
-      console.log(response)
-      console.log(response.data)
+      return {
+        success: isSuccessful,
+        ...response
+      }
     })
     .catch((error) => {
-      alert('Handle errors.')
+      // Handle errors here
+      alert('Handle errors from SendRequest func.')
       console.log(
         'Error from SendRequest func.',
         error,
         error.response,
         error.request
       )
+      return {
+        success: false,
+        ...error.response
+      }
     })
 }
 
 // TODO: Modals
 // TODO: Toast
-// TODO: Store Token

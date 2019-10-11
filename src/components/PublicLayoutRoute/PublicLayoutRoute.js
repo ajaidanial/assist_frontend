@@ -19,7 +19,7 @@ const PublicLayoutRoute = (props) => {
     <Route
       {...rest}
       render={(props) => {
-        if (localStorage.getItem('token')) {
+        if (sessionStorage.getItem('token')) {
           // TODO: validate auth token operations here
           /**
            * Auth token is in sessionStorage.
