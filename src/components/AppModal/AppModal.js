@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-boolean-value */
-/* eslint-disable react/jsx-boolean-value */
-
 import React, { Component } from 'react'
 import { styles } from './styles'
 import { withStyles } from '@material-ui/styles'
@@ -17,12 +14,13 @@ import {
   Divider
 } from '@material-ui/core'
 import { connect } from 'react-redux'
-// test
 import { toggleAppModal } from './actions'
 
 class AppModal extends Component {
   render() {
-    const { classes, toggleAppModal } = this.props
+    // Get from props
+    const { classes, toggleAppModal, state } = this.props
+
     return (
       <Modal
         BackdropComponent={Backdrop}
@@ -31,11 +29,12 @@ class AppModal extends Component {
         }}
         className={classes.modal}
         closeAfterTransition
-        open={true}
+        onClose={toggleAppModal}
+        open={state.isModalOpen}
       >
-        <Fade in={true}>
+        <Fade in={state.isModalOpen}>
           <Card className={classes.card}>
-            <CardHeader title="Error" />
+            <CardHeader title={state.title} />
             <Divider />
 
             <CardContent className={classes.cardContent}>
@@ -60,23 +59,31 @@ class AppModal extends Component {
   }
 }
 
+// Prop Types
 AppModal.propTypes = {
-  classes: PropTypes.func,
+  classes: PropTypes.object,
   state: PropTypes.object,
   toggleAppModal: PropTypes.func
 }
 
+// To map the appModalReducer's States to this component
 const mapStateToProps = (state) => {
   return {
     state: state.appModalReducer
   }
 }
 
+// To map the appModalReducer's State to this component
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleAppModal: () => dispatch(toggleAppModal())
+  }
+}
+
+// Export the styles, state and actions to its props
 export default withStyles(styles)(
   connect(
     mapStateToProps,
-    {
-      toggleAppModal
-    }
+    mapDispatchToProps
   )(AppModal)
 )
