@@ -30,9 +30,8 @@ export default function SendRequest(
   // Gets the authToken and add it to header
   // Skiped if includeToken is false
   if (includeToken) {
-    headers.Authorization = `JWT ${sessionStorage.getItem('token')}`
+    headers.Authorization = `Token ${sessionStorage.getItem('token')}`
   }
-
   // Constainst the success statuses
   // If response.status is in this object => passes to the outer function
   const successfulStatuses = [200, 201]
@@ -44,7 +43,7 @@ export default function SendRequest(
     data
   })
     .then((response) => {
-      console.log('Response from SendRequest func.', response)
+      // console.log('Response from SendRequest func.', response)
       // variable that tells the outer function if request was successfull
       let isSuccessful = false
       // Logics of the requests
