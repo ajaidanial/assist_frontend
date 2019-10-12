@@ -8,8 +8,11 @@ import { Grid, Button, TextField, Link, Typography } from '@material-ui/core'
 import { schema } from './schema' // schema for the form data
 import { styles } from './styles' // styles for the components
 import { SendRequest } from '../../helpers/api' // To send requests to server
+import { showAppToast } from '../../components' // To show toast
 
-const SignUp = () => {
+const SignUp = (props) => {
+  // The react-router history
+  const { history } = props
   // for styling the components
   const classes = makeStyles(styles)()
   // the state for the whole page
@@ -75,7 +78,11 @@ const SignUp = () => {
       .then((response) => {
         // Sign Up operation
         if (response.success) {
-          alert('Success => Sign Up')
+          showAppToast('Successfully created user. SignIn to continue.').then(
+            () => {
+              history.push('/sign-in')
+            }
+          )
         }
       })
       .catch((error) => {

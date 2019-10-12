@@ -1,10 +1,12 @@
 import { toast } from 'react-toastify'
 import './styles.css'
 
+const TOAST_TIME = 3000
+
 function showAppToast(content, type = null) {
   const toastConfig = {
     position: 'bottom-right',
-    autoClose: 3000,
+    autoClose: TOAST_TIME,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
@@ -12,18 +14,43 @@ function showAppToast(content, type = null) {
   }
 
   if (type === 'success') {
-    return toast.success(content, toastConfig)
+    return new Promise(function(resolve) {
+      toast.success(content, toastConfig)
+      setTimeout(function() {
+        resolve()
+      }, TOAST_TIME)
+    })
   }
   if (type === 'warning') {
-    return toast.warning(content, toastConfig)
+    return new Promise(function(resolve) {
+      toast.warning(content, toastConfig)
+      setTimeout(function() {
+        resolve()
+      }, TOAST_TIME)
+    })
   }
   if (type === 'error') {
-    return toast.error(content, toastConfig)
+    return new Promise(function(resolve) {
+      toast.error(content, toastConfig)
+      setTimeout(function() {
+        resolve()
+      }, TOAST_TIME)
+    })
   }
   if (type === 'info') {
-    return toast.info(content, toastConfig)
+    return new Promise(function(resolve) {
+      toast.info(content, toastConfig)
+      setTimeout(function() {
+        resolve()
+      }, TOAST_TIME)
+    })
   }
-  return toast.success(content, toastConfig)
+  return new Promise(function(resolve) {
+    toast.success(content, toastConfig)
+    setTimeout(function() {
+      resolve()
+    }, TOAST_TIME)
+  })
 }
 
 export default showAppToast

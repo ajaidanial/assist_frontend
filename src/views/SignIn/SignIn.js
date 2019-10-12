@@ -8,6 +8,7 @@ import { Grid, Button, TextField, Link, Typography } from '@material-ui/core'
 import { schema } from './schema' // for form validation
 import { styles } from './styles' // for styling the components
 import { SendRequest } from '../../helpers/api' // To send requests to server
+import { showAppToast } from '../../components' // To make toasts
 
 const SignIn = (props) => {
   // The react-router history
@@ -77,7 +78,9 @@ const SignIn = (props) => {
           const { token, user_data } = response.data
           sessionStorage.setItem('user_data', JSON.stringify(user_data))
           sessionStorage.setItem('token', token)
-          history.push('/sign-in')
+          showAppToast('Successfully signed in.').then(() => {
+            history.push('/sign-in')
+          })
         }
       })
       .catch((error) => {
