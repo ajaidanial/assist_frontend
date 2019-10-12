@@ -2,6 +2,8 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+import { signOutUser } from '../../helpers/auth'
+
 const ProtectedLayoutRoute = (props) => {
   /**
    * This `Route` verifies if the verified users is signed in or not.
@@ -20,13 +22,19 @@ const ProtectedLayoutRoute = (props) => {
       {...rest}
       render={(props) => {
         if (sessionStorage.getItem('token')) {
-          // Token validation for user
-          // Renders the current page with the layout.
-          return (
-            <Layout>
-              <Component {...props} />
-            </Layout>
-          )
+          // token is present
+          if (true) {
+            // Token validation for user
+            // Renders the current page with the layout.
+            return (
+              <Layout>
+                <Component {...props} />
+              </Layout>
+            )
+          } else {
+            // User is not authenticated | improper token
+            signOutUser()
+          }
         } else {
           /**
            * Auth token is not in sessionStorage.

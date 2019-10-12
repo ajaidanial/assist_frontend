@@ -69,7 +69,8 @@ const SignUp = () => {
         email: email.value
       },
       'POST',
-      '/api/users/'
+      '/api/users/',
+      false
     )
       .then((response) => {
         // Sign Up operation

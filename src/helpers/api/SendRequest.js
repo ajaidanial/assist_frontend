@@ -58,12 +58,12 @@ export default function SendRequest(
       }
     })
     .catch((error) => {
-      // console.log(
-      //   'Error from SendRequest func.',
-      //   error,
-      //   error.response,
-      //   error.request
-      // )
+      console.log(
+        'Error from SendRequest func.',
+        error,
+        error.response,
+        error.request
+      )
 
       const { data } = error.response // errors from response
       let errors = [] // the array of errors

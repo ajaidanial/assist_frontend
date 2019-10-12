@@ -68,7 +68,8 @@ const SignIn = (props) => {
         password: password.value
       },
       'POST',
-      '/api/get_auth_token/'
+      '/api/get_auth_token/',
+      false
     )
       .then((response) => {
         // Sign In operation
