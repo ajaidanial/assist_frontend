@@ -73,7 +73,9 @@ const SignIn = (props) => {
       .then((response) => {
         // Sign In operation
         if (response.success) {
-          sessionStorage.setItem('token', response.data.token)
+          const { token, user_data } = response.data
+          sessionStorage.setItem('user_data', JSON.stringify(user_data))
+          sessionStorage.setItem('token', token)
           history.push('/sign-in')
         }
       })

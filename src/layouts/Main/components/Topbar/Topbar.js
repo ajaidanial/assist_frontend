@@ -7,6 +7,9 @@ import { AppBar, Toolbar, Hidden, IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import InputIcon from '@material-ui/icons/Input'
 
+// The sign out function
+import { signOutUser } from '../../../../helpers/auth'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     boxShadow: 'none'
@@ -35,7 +38,11 @@ const Topbar = (props) => {
          * Remove this icon after development.
          * Acts as the sign out button.
          */}
-        <IconButton className={classes.signOutButton} color="inherit">
+        <IconButton
+          className={classes.signOutButton}
+          color="inherit"
+          onClick={signOutUser}
+        >
           <InputIcon />
         </IconButton>
         <Hidden lgUp>
