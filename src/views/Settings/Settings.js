@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { styles } from './styles'
 import { Grid } from '@material-ui/core'
-import { ProfileSettings, Password } from './components'
+import { ProfileSettings, Password, AddTag } from './components'
 
 const Settings = () => {
   // for the layout style of the page
@@ -16,6 +16,9 @@ const Settings = () => {
         </Grid>
         <Grid item md={5} xs={12}>
           <Password />
+        </Grid>
+        <Grid item md={6} xs={12}>
+          <AddTag />
         </Grid>
       </Grid>
     </div>

@@ -17,7 +17,7 @@ import { hasError, handleChange } from '../../../../helpers/form'
 import { styles } from './styles' // styles for the form
 import { schema } from './schema' // schema for the form data
 
-const Password = (props) => {
+const AddTag = (props) => {
   // get props
   const { className, ...rest } = props
   // get the styles
@@ -47,53 +47,50 @@ const Password = (props) => {
    * Handles the successful form submit.
    * @param {form submit event} event
    */
-  const handlePasswordChange = (event) => {
+  const handleTagAdd = (event) => {
     event.preventDefault()
     alert('work here')
   }
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
-      <form onSubmit={handlePasswordChange}>
-        <CardHeader
-          subheader="Update your password here"
-          title="User Password"
-        />
+      <form onSubmit={handleTagAdd}>
+        <CardHeader subheader="Add a new tag here" title="New Tag" />
         <Divider />
         <CardContent>
           <TextField
-            error={hasError('password', formState)}
+            error={hasError('name', formState)}
             fullWidth
             helperText={
-              hasError('password', formState)
-                ? formState.errors.password[0]
-                : null
+              hasError('name', formState) ? formState.errors.name[0] : null
             }
-            label="New Password"
-            name="password"
+            label="Name"
+            name="name"
             onChange={(e) => {
               handleChange(e, formState, setFormState)
             }}
-            type="password"
-            value={formState.values.password || ''}
+            type="text"
+            value={formState.values.name || ''}
             variant="outlined"
           />
           <TextField
             className={clsx(classes.textField)}
-            error={hasError('confirm_password', formState)}
+            error={hasError('description', formState)}
             fullWidth
             helperText={
-              hasError('confirm_password', formState)
-                ? formState.errors.confirm_password[0]
+              hasError('description', formState)
+                ? formState.errors.description[0]
                 : null
             }
-            label="Confirm password"
-            name="confirm_password"
+            label="Description"
+            multiline
+            name="description"
             onChange={(e) => {
               handleChange(e, formState, setFormState)
             }}
-            type="password"
-            value={formState.values.confirm_password || ''}
+            rows="5"
+            type="text"
+            value={formState.values.description || ''}
             variant="outlined"
           />
         </CardContent>
@@ -113,8 +110,8 @@ const Password = (props) => {
   )
 }
 
-Password.propTypes = {
+AddTag.propTypes = {
   className: PropTypes.string
 }
 
-export default Password
+export default AddTag

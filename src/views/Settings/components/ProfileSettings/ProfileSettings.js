@@ -55,7 +55,7 @@ const ProfileSettings = (props) => {
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <form onSubmit={handleProfileSave}>
-        <CardHeader subheader="Update your profile" title="User Profile" />
+        <CardHeader subheader="Update your profile here" title="User Profile" />
         <Divider />
         <CardContent>
           <Grid container>

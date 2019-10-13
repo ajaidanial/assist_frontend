@@ -1,17 +1,16 @@
 export const schema = {
-  password: {
+  name: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 128,
       minimum: 5
     }
   },
-  confirm_password: {
+  description: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 128,
       minimum: 5
-    },
-    equality: 'password'
+    }
   }
 }
