@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 export const styles = (theme) => ({
   root: {},
-  mt1: {
-    marginTop: '1rem'
+  textField: {
+    marginTop: theme.spacing(3)
   },
   cardFooter: {
     float: 'right'

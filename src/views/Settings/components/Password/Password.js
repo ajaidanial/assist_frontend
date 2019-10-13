@@ -76,7 +76,7 @@ const Password = (props) => {
             variant="outlined"
           />
           <TextField
-            className={clsx(classes.mt1)}
+            className={clsx(classes.textField)}
             error={hasError('confirm', formState)}
             fullWidth
             helperText={

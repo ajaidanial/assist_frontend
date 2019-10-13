@@ -9,6 +9,8 @@ import { schema } from './schema' // for form validation
 import { styles } from './styles' // for styling the components
 import { SendRequest } from '../../helpers/api' // To send requests to server
 import { showAppToast } from '../../components' // To make toasts
+// form utilities
+import { hasError, handleChange } from '../../helpers/form'
 
 const SignIn = (props) => {
   // The react-router history
@@ -35,26 +37,6 @@ const SignIn = (props) => {
       errors: errors || {}
     }))
   }, [formState.values])
-
-  /**
-   * Called on change of values in input fields.
-   * Stores values to the state.
-   * @param {form change event} event
-   */
-  const handleChange = (event) => {
-    event.persist()
-    setFormState((formState) => ({
-      ...formState,
-      values: {
-        ...formState.values,
-        [event.target.name]: event.target.value
-      },
-      touched: {
-        ...formState.touched,
-        [event.target.name]: true
-      }
-    }))
-  }
 
   /**
    * Handles the successful form submit.
@@ -93,13 +75,6 @@ const SignIn = (props) => {
       })
   }
 
-  /**
-   * Returns a bool if the input field has errors
-   * @param {`name` of input} field
-   */
-  const hasError = (field) =>
-    formState.touched[field] && formState.errors[field] ? true : false
-
   return (
     <div className={classes.root}>
       <Grid className={classes.grid} container>
@@ -112,28 +87,36 @@ const SignIn = (props) => {
                 </Typography>
                 <TextField
                   className={classes.textField}
-                  error={hasError('username')}
+                  error={hasError('username', formState)}
                   fullWidth
                   helperText={
-                    hasError('username') ? formState.errors.username[0] : null
+                    hasError('username', formState)
+                      ? formState.errors.username[0]
+                      : null
                   }
                   label="Username"
                   name="username"
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    handleChange(e, formState, setFormState)
+                  }}
                   type="text"
                   value={formState.values.username || ''}
                   variant="outlined"
                 />
                 <TextField
                   className={classes.textField}
-                  error={hasError('password')}
+                  error={hasError('password', formState)}
                   fullWidth
                   helperText={
-                    hasError('password') ? formState.errors.password[0] : null
+                    hasError('password', formState)
+                      ? formState.errors.password[0]
+                      : null
                   }
                   label="Password"
                   name="password"
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    handleChange(e, formState, setFormState)
+                  }}
                   type="password"
                   value={formState.values.password || ''}
                   variant="outlined"

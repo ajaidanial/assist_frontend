@@ -9,6 +9,8 @@ import { schema } from './schema' // schema for the form data
 import { styles } from './styles' // styles for the components
 import { SendRequest } from '../../helpers/api' // To send requests to server
 import { showAppToast } from '../../components' // To show toast
+// form utilities
+import { hasError, handleChange } from '../../helpers/form'
 
 const SignUp = (props) => {
   // The react-router history
@@ -35,26 +37,6 @@ const SignUp = (props) => {
       errors: errors || {}
     }))
   }, [formState.values])
-
-  /**
-   * Called on change of values in input fields.
-   * Stores values to the state.
-   * @param {form change event} event
-   */
-  const handleChange = (event) => {
-    event.persist()
-    setFormState((formState) => ({
-      ...formState,
-      values: {
-        ...formState.values,
-        [event.target.name]: event.target.value
-      },
-      touched: {
-        ...formState.touched,
-        [event.target.name]: true
-      }
-    }))
-  }
 
   /**
    * Handles the successful form submit.
@@ -95,13 +77,6 @@ const SignUp = (props) => {
       })
   }
 
-  /**
-   * Returns a bool if the input field has errors
-   * @param {`name` of input} field
-   */
-  const hasError = (field) =>
-    formState.touched[field] && formState.errors[field] ? true : false
-
   return (
     <div className={classes.root}>
       <Grid className={classes.grid} container>
@@ -116,16 +91,18 @@ const SignUp = (props) => {
                   <Grid className={classes.rowContainerLeft} item xs={6}>
                     <TextField
                       className={classes.textField}
-                      error={hasError('firstName')}
+                      error={hasError('firstName', formState)}
                       fullWidth
                       helperText={
-                        hasError('firstName')
+                        hasError('firstName', formState)
                           ? formState.errors.firstName[0]
                           : null
                       }
                       label="First Name"
                       name="firstName"
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        handleChange(e, formState, setFormState)
+                      }}
                       type="text"
                       value={formState.values.firstName || ''}
                       variant="outlined"
@@ -134,16 +111,18 @@ const SignUp = (props) => {
                   <Grid className={classes.rowContainerRight} item xs={6}>
                     <TextField
                       className={classes.textField}
-                      error={hasError('lastName')}
+                      error={hasError('lastName', formState)}
                       fullWidth
                       helperText={
-                        hasError('lastName')
+                        hasError('lastName', formState)
                           ? formState.errors.lastName[0]
                           : null
                       }
                       label="Last Name"
                       name="lastName"
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        handleChange(e, formState, setFormState)
+                      }}
                       type="text"
                       value={formState.values.lastName || ''}
                       variant="outlined"
@@ -152,28 +131,36 @@ const SignUp = (props) => {
                 </Grid>
                 <TextField
                   className={classes.textField}
-                  error={hasError('username')}
+                  error={hasError('username', formState)}
                   fullWidth
                   helperText={
-                    hasError('username') ? formState.errors.username[0] : null
+                    hasError('username', formState)
+                      ? formState.errors.username[0]
+                      : null
                   }
                   label="Username"
                   name="username"
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    handleChange(e, formState, setFormState)
+                  }}
                   type="text"
                   value={formState.values.username || ''}
                   variant="outlined"
                 />
                 <TextField
                   className={classes.textField}
-                  error={hasError('email')}
+                  error={hasError('email', formState)}
                   fullWidth
                   helperText={
-                    hasError('email') ? formState.errors.email[0] : null
+                    hasError('email', formState)
+                      ? formState.errors.email[0]
+                      : null
                   }
                   label="Email Address"
                   name="email"
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    handleChange(e, formState, setFormState)
+                  }}
                   type="text"
                   value={formState.values.email || ''}
                   variant="outlined"
@@ -183,16 +170,18 @@ const SignUp = (props) => {
                   <Grid className={classes.rowContainerLeft} item xs={6}>
                     <TextField
                       className={classes.textField}
-                      error={hasError('password')}
+                      error={hasError('password', formState)}
                       fullWidth
                       helperText={
-                        hasError('password')
+                        hasError('password', formState)
                           ? formState.errors.password[0]
                           : null
                       }
                       label="Password"
                       name="password"
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        handleChange(e, formState, setFormState)
+                      }}
                       type="password"
                       value={formState.values.password || ''}
                       variant="outlined"
@@ -201,16 +190,18 @@ const SignUp = (props) => {
                   <Grid className={classes.rowContainerRight} item xs={6}>
                     <TextField
                       className={classes.textField}
-                      error={hasError('confirmPassword')}
+                      error={hasError('confirmPassword', formState)}
                       fullWidth
                       helperText={
-                        hasError('confirmPassword')
+                        hasError('confirmPassword', formState)
                           ? formState.errors.confirmPassword[0]
                           : null
                       }
                       label="Confirm Password"
                       name="confirmPassword"
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        handleChange(e, formState, setFormState)
+                      }}
                       type="password"
                       value={formState.values.confirmPassword || ''}
                       variant="outlined"
