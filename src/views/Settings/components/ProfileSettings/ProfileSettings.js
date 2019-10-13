@@ -19,15 +19,16 @@ import { schema } from './schema' // schema for the form data
 import { styles } from './styles' // styles for the components
 
 const ProfileSettings = (props) => {
-  const { className, ...rest } = props
+  const { className, user_data, ...rest } = props
   // for styling the components
   const classes = makeStyles(styles)()
   // the state for the whole page
   const [formState, setFormState] = useState({
     isValid: false,
-    values: {},
+    values: user_data, // for init
     touched: {},
-    errors: {}
+    errors: {},
+    saved_values: user_data // for later checking
   })
 
   /**
@@ -36,12 +37,23 @@ const ProfileSettings = (props) => {
    */
   useEffect(() => {
     const errors = validate(formState.values, schema)
+
+    // check if the entered values are same as the saved values in db
+    let isFormValid = false
+    if (!errors) {
+      if (
+        JSON.stringify(formState.values) !==
+        JSON.stringify(formState.saved_values)
+      )
+        isFormValid = true
+    }
+
     setFormState((formState) => ({
       ...formState,
-      isValid: errors ? false : true,
+      isValid: isFormValid,
       errors: errors || {}
     }))
-  }, [formState.values])
+  }, [formState.values, formState.saved_values])
 
   /**
    * Handles the successful form submit.
@@ -61,39 +73,39 @@ const ProfileSettings = (props) => {
           <Grid container>
             <Grid className={classes.rowContainerLeft} item xs={6}>
               <TextField
-                error={hasError('firstName', formState)}
+                error={hasError('first_name', formState)}
                 fullWidth
                 helperText={
-                  hasError('firstName', formState)
-                    ? formState.errors.firstName[0]
+                  hasError('first_name', formState)
+                    ? formState.errors.first_name[0]
                     : null
                 }
                 label="First Name"
-                name="firstName"
+                name="first_name"
                 onChange={(e) => {
                   handleChange(e, formState, setFormState)
                 }}
                 type="text"
-                value={formState.values.firstName || ''}
+                value={formState.values.first_name || ''}
                 variant="outlined"
               />
             </Grid>
             <Grid className={classes.rowContainerRight} item xs={6}>
               <TextField
-                error={hasError('lastName', formState)}
+                error={hasError('last_name', formState)}
                 fullWidth
                 helperText={
-                  hasError('lastName', formState)
-                    ? formState.errors.lastName[0]
+                  hasError('last_name', formState)
+                    ? formState.errors.last_name[0]
                     : null
                 }
                 label="Last Name"
-                name="lastName"
+                name="last_name"
                 onChange={(e) => {
                   handleChange(e, formState, setFormState)
                 }}
                 type="text"
-                value={formState.values.lastName || ''}
+                value={formState.values.last_name || ''}
                 variant="outlined"
               />
             </Grid>
@@ -138,6 +150,7 @@ const ProfileSettings = (props) => {
           <Button
             color="primary"
             disabled={!formState.isValid}
+            type="submit"
             variant="outlined"
           >
             Update
@@ -149,7 +162,8 @@ const ProfileSettings = (props) => {
 }
 
 ProfileSettings.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  user_data: PropTypes.object
 }
 
 export default ProfileSettings

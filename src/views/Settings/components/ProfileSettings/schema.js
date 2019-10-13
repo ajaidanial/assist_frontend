@@ -1,11 +1,11 @@
 export const schema = {
-  firstName: {
+  first_name: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 32
     }
   },
-  lastName: {
+  last_name: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 32
