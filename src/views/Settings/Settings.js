@@ -1,16 +1,25 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(3)
-  }
-}))
+import { styles } from './styles'
+import { Grid } from '@material-ui/core'
+import { ProfileSettings, Password } from './components'
 
 const Settings = () => {
-  const classes = useStyles()
+  // for the layout style of the page
+  const classes = makeStyles(styles)()
 
-  return <div className={classes.root}>Settings Page</div>
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item md={7} xs={12}>
+          <ProfileSettings />
+        </Grid>
+        <Grid item md={5} xs={12}>
+          <Password />
+        </Grid>
+      </Grid>
+    </div>
+  )
 }
 
 export default Settings
