@@ -17,9 +17,11 @@ import {
 import { hasError, handleChange } from '../../../../helpers/form'
 import { schema } from './schema' // schema for the form data
 import { styles } from './styles' // styles for the components
+import { SendRequest } from '../../../../helpers/api' // for api request
+import { showAppToast } from '../../../../components' // for toast
 
 const ProfileSettings = (props) => {
-  const { className, user_data, ...rest } = props
+  const { className, history, user_data, ...rest } = props
   // for styling the components
   const classes = makeStyles(styles)()
   // the state for the whole page
@@ -61,7 +63,17 @@ const ProfileSettings = (props) => {
    */
   const handleProfileSave = (event) => {
     event.preventDefault()
-    alert('work here')
+    SendRequest(formState.values, 'PATCH', `/api/users/${user_data.id}/`).then(
+      (response) => {
+        if (response.success) {
+          const { data } = response
+          localStorage.setItem('user_data', JSON.stringify(data))
+          showAppToast('Successfully updated profile.').then(() => {
+            history.push('/settings')
+          })
+        }
+      }
+    )
   }
 
   return (
@@ -163,6 +175,7 @@ const ProfileSettings = (props) => {
 
 ProfileSettings.propTypes = {
   className: PropTypes.string,
+  history: PropTypes.object,
   user_data: PropTypes.object
 }
 

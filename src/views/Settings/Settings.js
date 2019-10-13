@@ -15,9 +15,16 @@ import {
 class Settings extends Component {
   render() {
     // get the props
-    const { classes } = this.props
-    // user data
-    const user_data = JSON.parse(localStorage.getItem('user_data'))
+    const { history, classes } = this.props
+    // user data | filter out the necessary data
+    const user_data_main = JSON.parse(localStorage.getItem('user_data'))
+    const user_data = {
+      username: user_data_main.username,
+      first_name: user_data_main.first_name,
+      id: user_data_main.id,
+      last_name: user_data_main.last_name,
+      email: user_data_main.email
+    }
     // temp data for tags
     const data = [
       {
@@ -51,7 +58,7 @@ class Settings extends Component {
             <ProfilePicture />
           </Grid>
           <Grid item md={4} xs={12}>
-            <ProfileSettings user_data={user_data} />
+            <ProfileSettings history={history} user_data={user_data} />
           </Grid>
           <Grid item md={6} xs={12}>
             <AddTag />
@@ -69,7 +76,8 @@ class Settings extends Component {
 }
 
 Settings.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  history: PropTypes.object
 }
 
 export default withStyles(styles)(Settings)
