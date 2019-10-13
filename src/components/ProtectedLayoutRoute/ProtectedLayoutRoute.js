@@ -21,7 +21,7 @@ const ProtectedLayoutRoute = (props) => {
     <Route
       {...rest}
       render={(props) => {
-        if (sessionStorage.getItem('token')) {
+        if (localStorage.getItem('token')) {
           let isVerified = true
           // token is present
           if (isVerified) {
@@ -38,7 +38,7 @@ const ProtectedLayoutRoute = (props) => {
           }
         } else {
           /**
-           * Auth token is not in sessionStorage.
+           * Auth token is not in localStorage.
            * Redirect to sign-in page.
            */
           return (

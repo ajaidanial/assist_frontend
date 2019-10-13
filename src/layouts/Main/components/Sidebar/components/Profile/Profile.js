@@ -25,7 +25,7 @@ const Profile = (props) => {
   const { className, ...rest } = props
   // get the stored data to show in sidebar
   const { username, first_name, last_name } = JSON.parse(
-    sessionStorage.getItem('user_data')
+    localStorage.getItem('user_data')
   )
   const classes = useStyles()
 

@@ -6,7 +6,7 @@ import { SendRequest } from '../api'
  * Used in ProtectedlayoutRoute
  */
 export function checkAuth() {
-  let user_id = JSON.parse(sessionStorage.getItem('user_data')).id
+  let user_id = JSON.parse(localStorage.getItem('user_data')).id
   return SendRequest({ user_id: user_id }, 'POST', '/api/check_auth_token/')
     .then((response) => {
       if (response.success) {

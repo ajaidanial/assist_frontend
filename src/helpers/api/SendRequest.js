@@ -30,7 +30,7 @@ export default function SendRequest(
   // Gets the authToken and add it to header
   // Skiped if includeToken is false
   if (includeToken) {
-    headers.Authorization = `Token ${sessionStorage.getItem('token')}`
+    headers.Authorization = `Token ${localStorage.getItem('token')}`
   }
   // Constainst the success statuses
   // If response.status is in this object => passes to the outer function

@@ -59,8 +59,8 @@ const SignIn = (props) => {
         // Sign In operation
         if (response.success) {
           const { token, user_data } = response.data
-          sessionStorage.setItem('user_data', JSON.stringify(user_data))
-          sessionStorage.setItem('token', token)
+          localStorage.setItem('user_data', JSON.stringify(user_data))
+          localStorage.setItem('token', token)
           showAppToast('Successfully signed in.').then(() => {
             history.push('/sign-in')
           })
