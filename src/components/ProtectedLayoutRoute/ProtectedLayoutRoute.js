@@ -22,8 +22,9 @@ const ProtectedLayoutRoute = (props) => {
       {...rest}
       render={(props) => {
         if (sessionStorage.getItem('token')) {
+          let isVerified = true
           // token is present
-          if (true) {
+          if (isVerified) {
             // TODO: Token validation for user
             // Renders the current page with the layout.
             return (
