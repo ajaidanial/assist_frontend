@@ -69,7 +69,7 @@ const ProfileSettings = (props) => {
           const { data } = response
           localStorage.setItem('user_data', JSON.stringify(data))
           showAppToast('Successfully updated profile.').then(() => {
-            history.push('/settings')
+            window.location.reload()
           })
         }
       }
