@@ -78,7 +78,7 @@ const SignUp = (props) => {
       .then((response) => {
         // Sign Up operation
         if (response.success) {
-          showAppToast('Successfully created user. SignIn to continue.').then(
+          showAppToast('Successfully created user. Sign in to continue.').then(
             () => {
               history.push('/sign-in')
             }
