@@ -1,12 +1,16 @@
 import { toast } from 'react-toastify'
 import './styles.css'
 
-const TOAST_TIME = 3000
-
-function showAppToast(content, type = null) {
+/**
+ * This function on called show the bottom toast for the application
+ * @param {the content for the toast} content
+ * @param {type of toast => color | success, warning, error, info} type
+ * @param {the time to show to toast => 1500s by default} toast_time
+ */
+function showAppToast(content, type = null, toast_time = 1500) {
   const toastConfig = {
     position: 'bottom-right',
-    autoClose: TOAST_TIME,
+    autoClose: toast_time,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
@@ -18,7 +22,7 @@ function showAppToast(content, type = null) {
       toast.success(content, toastConfig)
       setTimeout(function() {
         resolve()
-      }, TOAST_TIME)
+      }, toast_time)
     })
   }
   if (type === 'warning') {
@@ -26,7 +30,7 @@ function showAppToast(content, type = null) {
       toast.warning(content, toastConfig)
       setTimeout(function() {
         resolve()
-      }, TOAST_TIME)
+      }, toast_time)
     })
   }
   if (type === 'error') {
@@ -34,7 +38,7 @@ function showAppToast(content, type = null) {
       toast.error(content, toastConfig)
       setTimeout(function() {
         resolve()
-      }, TOAST_TIME)
+      }, toast_time)
     })
   }
   if (type === 'info') {
@@ -42,14 +46,14 @@ function showAppToast(content, type = null) {
       toast.info(content, toastConfig)
       setTimeout(function() {
         resolve()
-      }, TOAST_TIME)
+      }, toast_time)
     })
   }
   return new Promise(function(resolve) {
     toast.success(content, toastConfig)
     setTimeout(function() {
       resolve()
-    }, TOAST_TIME)
+    }, toast_time)
   })
 }
 

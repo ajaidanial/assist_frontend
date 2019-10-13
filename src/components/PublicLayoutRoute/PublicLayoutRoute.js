@@ -47,7 +47,7 @@ const PublicLayoutRoute = (props) => {
 }
 
 PublicLayoutRoute.propTypes = {
-  component: PropTypes.func,
+  component: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   layout: PropTypes.func,
   location: PropTypes.object
 }
