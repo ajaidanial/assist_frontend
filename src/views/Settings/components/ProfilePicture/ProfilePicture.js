@@ -8,7 +8,8 @@ import {
   CardContent,
   CardActions,
   Divider,
-  Button
+  Button,
+  Avatar
 } from '@material-ui/core'
 import { styles } from './styles' // styles for the form
 
@@ -39,8 +40,12 @@ const ProfilePicture = (props) => {
         title="User Avatar"
       />
       <Divider />
-      <CardContent>
-        <h1>test</h1>
+      <CardContent className={classes.avatarContainer}>
+        <Avatar
+          alt="User"
+          className={classes.avatar}
+          src={'/images/avatars/avatar_11.png'}
+        />
       </CardContent>
       <Divider />
       <CardActions className={clsx(classes.cardFooter)}>

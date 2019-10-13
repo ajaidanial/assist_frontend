@@ -41,10 +41,10 @@ const Settings = () => {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item md={4} xs={12}>
-          <ProfilePicture />
+          <Password />
         </Grid>
         <Grid item md={4} xs={12}>
-          <Password />
+          <ProfilePicture />
         </Grid>
         <Grid item md={4} xs={12}>
           <ProfileSettings />
