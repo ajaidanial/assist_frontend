@@ -16,10 +16,12 @@ import {
 import { hasError, handleChange } from '../../../../helpers/form'
 import { styles } from './styles' // styles for the form
 import { schema } from './schema' // schema for the form data
+import { SendRequest } from '../../../../helpers/api' // for api request
+import { showAppToast } from '../../../../components' // for toast
 
 const AddTag = (props) => {
   // get props
-  const { className, ...rest } = props
+  const { className, history, ...rest } = props
   // get the styles
   const classes = makeStyles(styles)()
   // the state for the whole component
@@ -49,7 +51,20 @@ const AddTag = (props) => {
    */
   const handleTagAdd = (event) => {
     event.preventDefault()
-    alert('work here')
+    SendRequest(formState.values, 'POST', '/api/tags/').then((response) => {
+      if (response.success) {
+        // reset the set values
+        setFormState({
+          isValid: false,
+          values: {},
+          touched: {},
+          errors: {}
+        })
+        showAppToast('Successfully created your tag.').then(() => {
+          history.replace('/settings')
+        })
+      }
+    })
   }
 
   return (
@@ -111,7 +126,8 @@ const AddTag = (props) => {
 }
 
 AddTag.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  history: PropTypes.object
 }
 
 export default AddTag

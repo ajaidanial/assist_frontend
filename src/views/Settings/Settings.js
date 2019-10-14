@@ -61,7 +61,7 @@ class Settings extends Component {
             <ProfileSettings history={history} user_data={user_data} />
           </Grid>
           <Grid item md={6} xs={12}>
-            <AddTag />
+            <AddTag history={history} />
           </Grid>
           <Grid item md={6} xs={12}>
             <ModifyTags tagData={data} />
