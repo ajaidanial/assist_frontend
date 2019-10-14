@@ -11,8 +11,33 @@ import {
   ProfilePicture,
   BottomContent
 } from './components'
+import { SendRequest } from '../../helpers/api' // for api request
 
 class Settings extends Component {
+  // state to store the tags_data
+  state = {
+    tags_data: []
+  }
+  // To get the Tags data before the component is loaded
+  componentDidMount() {
+    alert('test')
+    const { history } = this.props
+    SendRequest({}, 'GET', '/api/tags/').then((response) => {
+      if (response.success) {
+        const { data } = response
+        this.setState(
+          {
+            ...this.state,
+            tags_data: data
+          },
+          () => {
+            history.replace('/settings')
+          }
+        )
+      }
+    })
+  }
+
   render() {
     // get the props
     const { history, classes } = this.props
@@ -25,29 +50,9 @@ class Settings extends Component {
       last_name: user_data_main.last_name,
       email: user_data_main.email
     }
-    // temp data for tags
-    const data = [
-      {
-        name: 'test1',
-        id: 1
-      },
-      {
-        name: 'test2',
-        id: 2
-      },
-      {
-        name: 'test3',
-        id: 3
-      },
-      {
-        name: 'test4',
-        id: 4
-      },
-      {
-        name: 'test5',
-        id: 5
-      }
-    ]
+    // get the tags data from state | to pass as props
+    const { tags_data } = this.state
+
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
@@ -64,7 +69,7 @@ class Settings extends Component {
             <AddTag history={history} />
           </Grid>
           <Grid item md={6} xs={12}>
-            <ModifyTags tagData={data} />
+            <ModifyTags tagData={tags_data} />
           </Grid>
           <Grid item md={12} xs={12}>
             <BottomContent />
