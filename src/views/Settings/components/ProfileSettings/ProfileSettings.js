@@ -85,7 +85,7 @@ const ProfileSettings = (props) => {
             saved_values: new_user_data // for later checking
           })
           showAppToast('Successfully updated profile.').then(() => {
-            history.push('/settings/')
+            history.replace('/settings')
           })
         }
       }

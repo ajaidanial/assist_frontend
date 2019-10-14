@@ -62,7 +62,7 @@ const Password = (props) => {
             errors: {}
           })
           showAppToast('Successfully updated password.').then(() => {
-            history.push('/settings/')
+            history.replace('/settings/')
           })
         }
       }
