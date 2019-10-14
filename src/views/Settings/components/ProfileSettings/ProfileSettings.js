@@ -67,9 +67,18 @@ const ProfileSettings = (props) => {
       (response) => {
         if (response.success) {
           const { data } = response
+          // save to localstorage
           localStorage.setItem('user_data', JSON.stringify(data))
+          // reset the set values
+          setFormState({
+            isValid: false,
+            values: data, // for init
+            touched: {},
+            errors: {},
+            saved_values: data // for later checking
+          })
           showAppToast('Successfully updated profile.').then(() => {
-            window.location.reload()
+            history.push('/settings/')
           })
         }
       }
