@@ -52,7 +52,7 @@ class Settings extends Component {
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item md={4} xs={12}>
-            <Password />
+            <Password history={history} user_data={user_data} />
           </Grid>
           <Grid item md={4} xs={12}>
             <ProfilePicture />

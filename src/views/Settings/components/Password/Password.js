@@ -16,10 +16,12 @@ import {
 import { hasError, handleChange } from '../../../../helpers/form'
 import { styles } from './styles' // styles for the form
 import { schema } from './schema' // schema for the form data
+import { SendRequest } from '../../../../helpers/api' // for api request
+import { showAppToast } from '../../../../components' // for toast
 
 const Password = (props) => {
   // get props
-  const { className, ...rest } = props
+  const { className, user_data, history, ...rest } = props
   // get the styles
   const classes = makeStyles(styles)()
   // the state for the whole component
@@ -49,7 +51,22 @@ const Password = (props) => {
    */
   const handlePasswordChange = (event) => {
     event.preventDefault()
-    alert('work here')
+    SendRequest(formState.values, 'PATCH', `/api/users/${user_data.id}/`).then(
+      (response) => {
+        if (response.success) {
+          // reset the set values
+          setFormState({
+            isValid: false,
+            values: {},
+            touched: {},
+            errors: {}
+          })
+          showAppToast('Successfully updated password.').then(() => {
+            history.push('/settings/')
+          })
+        }
+      }
+    )
   }
 
   return (
@@ -114,7 +131,9 @@ const Password = (props) => {
 }
 
 Password.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  history: PropTypes.object,
+  user_data: PropTypes.object
 }
 
 export default Password

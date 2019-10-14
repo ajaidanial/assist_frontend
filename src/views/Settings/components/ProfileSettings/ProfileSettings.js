@@ -70,12 +70,19 @@ const ProfileSettings = (props) => {
           // save to localstorage
           localStorage.setItem('user_data', JSON.stringify(data))
           // reset the set values
+          const new_user_data = {
+            username: data.username,
+            first_name: data.first_name,
+            id: data.id,
+            last_name: data.last_name,
+            email: data.email
+          }
           setFormState({
             isValid: false,
-            values: data, // for init
+            values: new_user_data, // for init
             touched: {},
             errors: {},
-            saved_values: data // for later checking
+            saved_values: new_user_data // for later checking
           })
           showAppToast('Successfully updated profile.').then(() => {
             history.push('/settings/')
