@@ -18,9 +18,9 @@ class Settings extends Component {
   state = {
     tags_data: []
   }
-  // To get the Tags data before the component is loaded
-  componentDidMount() {
-    alert('test')
+
+  getTagsData = () => {
+    alert('1')
     const { history } = this.props
     SendRequest({}, 'GET', '/api/tags/').then((response) => {
       if (response.success) {
