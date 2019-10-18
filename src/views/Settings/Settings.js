@@ -16,24 +16,27 @@ import { SendRequest } from '../../helpers/api' // for api request
 class Settings extends Component {
   // state to store the tags_data
   state = {
-    tags_data: []
+    tags_data: [], // To store all the tags data
+    lastLocationKey: '' // To remember the location.key user in history.listen
   }
 
+  // To Update the tags once page is loaded
+  componentDidMount() {
+    this.getTagsData()
+  }
+
+  /**
+   * To get the list of tags
+   * Also passed as a props to AddTag
+   */
   getTagsData = () => {
-    alert('1')
-    const { history } = this.props
     SendRequest({}, 'GET', '/api/tags/').then((response) => {
       if (response.success) {
         const { data } = response
-        this.setState(
-          {
-            ...this.state,
-            tags_data: data
-          },
-          () => {
-            history.replace('/settings')
-          }
-        )
+        this.setState({
+          ...this.state,
+          tags_data: data
+        })
       }
     })
   }
@@ -52,6 +55,23 @@ class Settings extends Component {
     }
     // get the tags data from state | to pass as props
     const { tags_data } = this.state
+
+    /**
+     * To listen if history.replace() in AddTags
+     * Gets all the tags, if done so, and if the lastLocationKey is not the currentLocationKey
+     */
+    history.listen((location) => {
+      if (this.state.lastLocationKey !== location.key) {
+        this.setState(
+          {
+            lastLocationKey: location.key // To save the location key || Prevents calling multiple times
+          },
+          () => {
+            this.getTagsData()
+          }
+        )
+      }
+    })
 
     return (
       <div className={classes.root}>
