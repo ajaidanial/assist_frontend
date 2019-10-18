@@ -5,10 +5,12 @@ import { makeStyles } from '@material-ui/styles'
 import { Card, CardHeader, CardContent, Divider, Chip } from '@material-ui/core'
 // form utilities
 import { styles } from './styles' // styles for the form
+import { SendRequest } from '../../../../helpers/api' // for api request
+import { showAppToast } from '../../../../components' // for toast
 
 const ModifyTags = (props) => {
   // get props
-  const { className, tagData, ...rest } = props
+  const { className, history, tagData, ...rest } = props
   // get the styles
   const classes = makeStyles(styles)()
 
@@ -17,7 +19,13 @@ const ModifyTags = (props) => {
    * @param {the id of a tag} id
    */
   const handleDeleteTag = (id) => {
-    alert(`delete tag ${id}`)
+    SendRequest({}, 'DELETE', `/api/tags/${id}/`).then((response) => {
+      if (response.success) {
+        showAppToast('Successfully deleted your tag.').then(() => {
+          history.replace('/settings')
+        })
+      }
+    })
   }
 
   /**
@@ -51,6 +59,7 @@ const ModifyTags = (props) => {
 
 ModifyTags.propTypes = {
   className: PropTypes.string,
+  history: PropTypes.object,
   tagData: PropTypes.array
 }
 

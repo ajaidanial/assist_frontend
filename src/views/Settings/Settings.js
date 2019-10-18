@@ -89,7 +89,7 @@ class Settings extends Component {
             <AddTag history={history} />
           </Grid>
           <Grid item md={6} xs={12}>
-            <ModifyTags tagData={tags_data} />
+            <ModifyTags history={history} tagData={tags_data} />
           </Grid>
           <Grid item md={12} xs={12}>
             <BottomContent />

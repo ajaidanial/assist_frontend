@@ -34,7 +34,7 @@ export default function SendRequest(
   }
   // Constainst the success statuses
   // If response.status is in this object => passes to the outer function
-  const successfulStatuses = [200, 201]
+  const successfulStatuses = [200, 201, 204]
 
   return axios({
     method,
