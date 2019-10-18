@@ -1,16 +1,30 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
+import React, { Component } from 'react'
+import { withStyles } from '@material-ui/styles'
+import { styles } from './styles'
+import { Grid } from '@material-ui/core'
+import PropTypes from 'prop-types'
+import { AddTransactions } from './components'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(3)
+class Transactions extends Component {
+  render() {
+    // get the props
+    const { classes } = this.props
+
+    return (
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item md={5} xs={12}>
+            <AddTransactions />
+          </Grid>
+        </Grid>
+      </div>
+    )
   }
-}))
-
-const Transactions = () => {
-  const classes = useStyles()
-
-  return <div className={classes.root}>Transactions Page</div>
 }
 
-export default Transactions
+Transactions.propTypes = {
+  classes: PropTypes.object,
+  history: PropTypes.object
+}
+
+export default withStyles(styles)(Transactions)
