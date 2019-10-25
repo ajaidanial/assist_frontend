@@ -6,5 +6,8 @@ export const styles = (theme) => ({
   },
   cardFooter: {
     float: 'right'
+  },
+  formSelect: {
+    marginTop: theme.spacing(3)
   }
 })

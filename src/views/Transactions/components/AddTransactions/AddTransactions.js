@@ -18,8 +18,6 @@ import {
   FormSelect,
   FormTextField
 } from '../../../../components/CustomMaterialUI'
-// form utilities
-import { hasError, handleChange } from '../../../../helpers/form'
 import { styles } from './styles' // styles for the form
 import { schema } from './schema' // schema for the form data
 import { SendRequest } from '../../../../helpers/api' // for api request
@@ -99,35 +97,17 @@ const AddTransactions = (props) => {
             setFormState={setFormState}
             type="text"
           />
-          {/* TODO: work from below */}
           <Grid container spacing={3}>
             <Grid item md={6} xs={6}>
               <FormSelect
-                error={hasError('transaction_type', formState)}
-                helperText={
-                  hasError('transaction_type', formState)
-                    ? formState.errors.transaction_type[0]
-                    : null
-                }
+                className={classes.formSelect}
+                formState={formState}
                 label="Transaction Type"
                 name="transaction_type"
-                onChange={(e) => {
-                  handleChange(e, formState, setFormState)
-                }}
-                onClose={() => {
-                  setFormState({
-                    ...formState,
-                    touched: {
-                      ...formState.touched,
-                      transaction_type: true
-                    }
-                  })
-                }}
-                value={formState.values.transaction_type || ''}
+                setFormState={setFormState}
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value="CREDIT">Credit</MenuItem>
+                <MenuItem value="DEBIT">Debit</MenuItem>
               </FormSelect>
             </Grid>
           </Grid>
