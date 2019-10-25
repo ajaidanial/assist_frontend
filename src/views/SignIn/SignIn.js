@@ -4,14 +4,15 @@ import { Link as RouterLink, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import validate from 'validate.js'
 import { makeStyles } from '@material-ui/styles'
-import { Grid, Button, TextField, Link, Typography } from '@material-ui/core'
+// material ui components
+import { Grid, Button, Link, Typography } from '@material-ui/core'
+// custom material components
+import { FormTextField } from '../../components/CustomMaterialUI'
 
 import { schema } from './schema' // for form validation
 import { styles } from './styles' // for styling the components
 import { SendRequest } from '../../helpers/api' // To send requests to server
 import { showAppToast } from '../../components' // To make toasts
-// form utilities
-import { hasError, handleChange } from '../../helpers/form'
 
 const SignIn = (props) => {
   // The react-router history
@@ -86,41 +87,21 @@ const SignIn = (props) => {
                 <Typography className={classes.title} variant="h2">
                   Sign in
                 </Typography>
-                <TextField
+                <FormTextField
                   className={classes.textField}
-                  error={hasError('username', formState)}
-                  fullWidth
-                  helperText={
-                    hasError('username', formState)
-                      ? formState.errors.username[0]
-                      : null
-                  }
+                  formState={formState}
                   label="Username"
                   name="username"
-                  onChange={(e) => {
-                    handleChange(e, formState, setFormState)
-                  }}
+                  setFormState={setFormState}
                   type="text"
-                  value={formState.values.username || ''}
-                  variant="outlined"
                 />
-                <TextField
+                <FormTextField
                   className={classes.textField}
-                  error={hasError('password', formState)}
-                  fullWidth
-                  helperText={
-                    hasError('password', formState)
-                      ? formState.errors.password[0]
-                      : null
-                  }
+                  formState={formState}
                   label="Password"
                   name="password"
-                  onChange={(e) => {
-                    handleChange(e, formState, setFormState)
-                  }}
+                  setFormState={setFormState}
                   type="password"
-                  value={formState.values.password || ''}
-                  variant="outlined"
                 />
                 <Button
                   className={classes.signInButton}

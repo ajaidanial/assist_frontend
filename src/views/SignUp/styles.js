@@ -21,7 +21,7 @@ export const styles = (theme) => ({
   form: {
     paddingLeft: 100,
     paddingRight: 100,
-    paddingBottom: 125,
+    paddingBottom: theme.spacing(8),
     flexBasis: 700,
     [theme.breakpoints.down('sm')]: {
       paddingLeft: theme.spacing(2),
@@ -36,11 +36,5 @@ export const styles = (theme) => ({
   },
   signUpButton: {
     margin: theme.spacing(3, 0)
-  },
-  rowContainerLeft: {
-    paddingRight: theme.spacing(1)
-  },
-  rowContainerRight: {
-    paddingLeft: theme.spacing(1)
   }
 })

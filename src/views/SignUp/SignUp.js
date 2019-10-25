@@ -4,14 +4,15 @@ import { Link as RouterLink, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import validate from 'validate.js'
 import { makeStyles } from '@material-ui/styles'
-import { Grid, Button, TextField, Link, Typography } from '@material-ui/core'
+// material components
+import { Grid, Button, Link, Typography } from '@material-ui/core'
+// custom material components
+import { FormTextField } from '../../components/CustomMaterialUI'
 
 import { schema } from './schema' // schema for the form data
 import { styles } from './styles' // styles for the components
 import { SendRequest } from '../../helpers/api' // To send requests to server
 import { showAppToast } from '../../components' // To show toast
-// form utilities
-import { hasError, handleChange } from '../../helpers/form'
 
 const SignUp = (props) => {
   // The react-router history
@@ -88,124 +89,63 @@ const SignUp = (props) => {
                 <Typography className={classes.title} variant="h2">
                   Create new account
                 </Typography>
-                <Grid container>
-                  <Grid className={classes.rowContainerLeft} item xs={6}>
-                    <TextField
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <FormTextField
                       className={classes.textField}
-                      error={hasError('firstName', formState)}
-                      fullWidth
-                      helperText={
-                        hasError('firstName', formState)
-                          ? formState.errors.firstName[0]
-                          : null
-                      }
+                      formState={formState}
                       label="First Name"
                       name="firstName"
-                      onChange={(e) => {
-                        handleChange(e, formState, setFormState)
-                      }}
+                      setFormState={setFormState}
                       type="text"
-                      value={formState.values.firstName || ''}
-                      variant="outlined"
                     />
                   </Grid>
-                  <Grid className={classes.rowContainerRight} item xs={6}>
-                    <TextField
+                  <Grid item xs={6}>
+                    <FormTextField
                       className={classes.textField}
-                      error={hasError('lastName', formState)}
-                      fullWidth
-                      helperText={
-                        hasError('lastName', formState)
-                          ? formState.errors.lastName[0]
-                          : null
-                      }
+                      formState={formState}
                       label="Last Name"
                       name="lastName"
-                      onChange={(e) => {
-                        handleChange(e, formState, setFormState)
-                      }}
+                      setFormState={setFormState}
                       type="text"
-                      value={formState.values.lastName || ''}
-                      variant="outlined"
                     />
                   </Grid>
                 </Grid>
-                <TextField
+                <FormTextField
                   className={classes.textField}
-                  error={hasError('username', formState)}
-                  fullWidth
-                  helperText={
-                    hasError('username', formState)
-                      ? formState.errors.username[0]
-                      : null
-                  }
+                  formState={formState}
                   label="Username"
                   name="username"
-                  onChange={(e) => {
-                    handleChange(e, formState, setFormState)
-                  }}
+                  setFormState={setFormState}
                   type="text"
-                  value={formState.values.username || ''}
-                  variant="outlined"
                 />
-                <TextField
+                <FormTextField
                   className={classes.textField}
-                  error={hasError('email', formState)}
-                  fullWidth
-                  helperText={
-                    hasError('email', formState)
-                      ? formState.errors.email[0]
-                      : null
-                  }
+                  formState={formState}
                   label="Email Address"
                   name="email"
-                  onChange={(e) => {
-                    handleChange(e, formState, setFormState)
-                  }}
+                  setFormState={setFormState}
                   type="text"
-                  value={formState.values.email || ''}
-                  variant="outlined"
                 />
-
-                <Grid container>
-                  <Grid className={classes.rowContainerLeft} item xs={6}>
-                    <TextField
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <FormTextField
                       className={classes.textField}
-                      error={hasError('password', formState)}
-                      fullWidth
-                      helperText={
-                        hasError('password', formState)
-                          ? formState.errors.password[0]
-                          : null
-                      }
+                      formState={formState}
                       label="Password"
                       name="password"
-                      onChange={(e) => {
-                        handleChange(e, formState, setFormState)
-                      }}
+                      setFormState={setFormState}
                       type="password"
-                      value={formState.values.password || ''}
-                      variant="outlined"
                     />
                   </Grid>
-                  <Grid className={classes.rowContainerRight} item xs={6}>
-                    <TextField
+                  <Grid item xs={6}>
+                    <FormTextField
                       className={classes.textField}
-                      error={hasError('confirmPassword', formState)}
-                      fullWidth
-                      helperText={
-                        hasError('confirmPassword', formState)
-                          ? formState.errors.confirmPassword[0]
-                          : null
-                      }
+                      formState={formState}
                       label="Confirm Password"
                       name="confirmPassword"
-                      onChange={(e) => {
-                        handleChange(e, formState, setFormState)
-                      }}
+                      setFormState={setFormState}
                       type="password"
-                      value={formState.values.confirmPassword || ''}
-                      variant="outlined"
                     />
                   </Grid>
                 </Grid>
