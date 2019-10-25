@@ -12,16 +12,22 @@
  * }
  */
 export const handleChange = (event, formState, formStateAction) => {
+  // init works
+  let name = event.target.name
+  if (typeof event.target.name === 'object') {
+    name = event.target.name.name
+  }
+  // main work starts
   event.persist()
   formStateAction({
     ...formState,
     values: {
       ...formState.values,
-      [event.target.name]: event.target.value
+      [name]: event.target.value
     },
     touched: {
       ...formState.touched,
-      [event.target.name]: true
+      [name]: true
     }
   })
 }

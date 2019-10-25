@@ -12,5 +12,8 @@ export const schema = {
       maximum: 128,
       minimum: 5
     }
+  },
+  transaction_type: {
+    presence: { allowEmpty: false, message: 'is required' }
   }
 }

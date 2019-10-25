@@ -9,9 +9,13 @@ import {
   CardContent,
   CardActions,
   Divider,
+  Grid,
   Button,
-  TextField
+  TextField,
+  MenuItem
 } from '@material-ui/core'
+// custom material ui components
+import { FormSelect } from '../../../../components/CustomMaterialUI'
 // form utilities
 import { hasError, handleChange } from '../../../../helpers/form'
 import { styles } from './styles' // styles for the form
@@ -111,6 +115,37 @@ const AddTransactions = (props) => {
             value={formState.values.description || ''}
             variant="outlined"
           />
+          <Grid container spacing={3}>
+            <Grid item md={6} xs={6}>
+              <FormSelect
+                error={hasError('transaction_type', formState)}
+                helperText={
+                  hasError('transaction_type', formState)
+                    ? formState.errors.transaction_type[0]
+                    : null
+                }
+                label="Transaction Type"
+                name="transaction_type"
+                onChange={(e) => {
+                  handleChange(e, formState, setFormState)
+                }}
+                onClose={() => {
+                  setFormState({
+                    ...formState,
+                    touched: {
+                      ...formState.touched,
+                      transaction_type: true
+                    }
+                  })
+                }}
+                value={formState.values.transaction_type || ''}
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </FormSelect>
+            </Grid>
+          </Grid>
         </CardContent>
         <Divider />
         <CardActions className={clsx(classes.cardFooter)}>
