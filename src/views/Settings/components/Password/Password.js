@@ -9,11 +9,10 @@ import {
   CardContent,
   CardActions,
   Divider,
-  Button,
-  TextField
+  Button
 } from '@material-ui/core'
-// form utilities
-import { hasError, handleChange } from '../../../../helpers/form'
+// custom material components
+import { FormTextField } from '../../../../components/CustomMaterialUI'
 import { styles } from './styles' // styles for the form
 import { schema } from './schema' // schema for the form data
 import { SendRequest } from '../../../../helpers/api' // for api request
@@ -78,40 +77,20 @@ const Password = (props) => {
         />
         <Divider />
         <CardContent>
-          <TextField
-            error={hasError('password', formState)}
-            fullWidth
-            helperText={
-              hasError('password', formState)
-                ? formState.errors.password[0]
-                : null
-            }
+          <FormTextField
+            formState={formState}
             label="New Password"
             name="password"
-            onChange={(e) => {
-              handleChange(e, formState, setFormState)
-            }}
+            setFormState={setFormState}
             type="password"
-            value={formState.values.password || ''}
-            variant="outlined"
           />
-          <TextField
+          <FormTextField
             className={clsx(classes.textField)}
-            error={hasError('confirm_password', formState)}
-            fullWidth
-            helperText={
-              hasError('confirm_password', formState)
-                ? formState.errors.confirm_password[0]
-                : null
-            }
+            formState={formState}
             label="Confirm password"
             name="confirm_password"
-            onChange={(e) => {
-              handleChange(e, formState, setFormState)
-            }}
+            setFormState={setFormState}
             type="password"
-            value={formState.values.confirm_password || ''}
-            variant="outlined"
           />
         </CardContent>
         <Divider />

@@ -10,11 +10,10 @@ import {
   CardContent,
   CardActions,
   Divider,
-  Button,
-  TextField
+  Button
 } from '@material-ui/core'
-// form utilities
-import { hasError, handleChange } from '../../../../helpers/form'
+// custom material components
+import { FormTextField } from '../../../../components/CustomMaterialUI'
 import { schema } from './schema' // schema for the form data
 import { styles } from './styles' // styles for the components
 import { SendRequest } from '../../../../helpers/api' // for api request
@@ -98,79 +97,41 @@ const ProfileSettings = (props) => {
         <CardHeader subheader="Update your profile here" title="User Profile" />
         <Divider />
         <CardContent>
-          <Grid container>
-            <Grid className={classes.rowContainerLeft} item xs={6}>
-              <TextField
-                error={hasError('first_name', formState)}
-                fullWidth
-                helperText={
-                  hasError('first_name', formState)
-                    ? formState.errors.first_name[0]
-                    : null
-                }
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <FormTextField
+                formState={formState}
                 label="First Name"
                 name="first_name"
-                onChange={(e) => {
-                  handleChange(e, formState, setFormState)
-                }}
+                setFormState={setFormState}
                 type="text"
-                value={formState.values.first_name || ''}
-                variant="outlined"
               />
             </Grid>
-            <Grid className={classes.rowContainerRight} item xs={6}>
-              <TextField
-                error={hasError('last_name', formState)}
-                fullWidth
-                helperText={
-                  hasError('last_name', formState)
-                    ? formState.errors.last_name[0]
-                    : null
-                }
+            <Grid item xs={6}>
+              <FormTextField
+                formState={formState}
                 label="Last Name"
                 name="last_name"
-                onChange={(e) => {
-                  handleChange(e, formState, setFormState)
-                }}
+                setFormState={setFormState}
                 type="text"
-                value={formState.values.last_name || ''}
-                variant="outlined"
               />
             </Grid>
           </Grid>
-          <TextField
+          <FormTextField
             className={classes.textField}
-            error={hasError('username', formState)}
-            fullWidth
-            helperText={
-              hasError('username', formState)
-                ? formState.errors.username[0]
-                : null
-            }
+            formState={formState}
             label="Username"
             name="username"
-            onChange={(e) => {
-              handleChange(e, formState, setFormState)
-            }}
+            setFormState={setFormState}
             type="text"
-            value={formState.values.username || ''}
-            variant="outlined"
           />
-          <TextField
+          <FormTextField
             className={classes.textField}
-            error={hasError('email', formState)}
-            fullWidth
-            helperText={
-              hasError('email', formState) ? formState.errors.email[0] : null
-            }
+            formState={formState}
             label="Email Address"
             name="email"
-            onChange={(e) => {
-              handleChange(e, formState, setFormState)
-            }}
+            setFormState={setFormState}
             type="text"
-            value={formState.values.email || ''}
-            variant="outlined"
           />
         </CardContent>
         <Divider />
