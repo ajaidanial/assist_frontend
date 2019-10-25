@@ -11,11 +11,13 @@ import {
   Divider,
   Grid,
   Button,
-  TextField,
   MenuItem
 } from '@material-ui/core'
 // custom material ui components
-import { FormSelect } from '../../../../components/CustomMaterialUI'
+import {
+  FormSelect,
+  FormTextField
+} from '../../../../components/CustomMaterialUI'
 // form utilities
 import { hasError, handleChange } from '../../../../helpers/form'
 import { styles } from './styles' // styles for the form
@@ -80,41 +82,24 @@ const AddTransactions = (props) => {
         />
         <Divider />
         <CardContent>
-          <TextField
-            error={hasError('name', formState)}
-            fullWidth
-            helperText={
-              hasError('name', formState) ? formState.errors.name[0] : null
-            }
+          <FormTextField
+            formState={formState}
             label="Name"
             name="name"
-            onChange={(e) => {
-              handleChange(e, formState, setFormState)
-            }}
+            setFormState={setFormState}
             type="text"
-            value={formState.values.name || ''}
-            variant="outlined"
           />
-          <TextField
+          <FormTextField
             className={clsx(classes.textField)}
-            error={hasError('description', formState)}
-            fullWidth
-            helperText={
-              hasError('description', formState)
-                ? formState.errors.description[0]
-                : null
-            }
+            formState={formState}
             label="Description"
             multiline
             name="description"
-            onChange={(e) => {
-              handleChange(e, formState, setFormState)
-            }}
             rows="5"
+            setFormState={setFormState}
             type="text"
-            value={formState.values.description || ''}
-            variant="outlined"
           />
+          {/* TODO: work from below */}
           <Grid container spacing={3}>
             <Grid item md={6} xs={6}>
               <FormSelect

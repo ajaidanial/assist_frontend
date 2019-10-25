@@ -9,7 +9,15 @@ import { hasError, handleChange } from '../../helpers/form'
  * The TextField material ui component user everywhere.
  */
 const FormSelect = (props) => {
-  const { className, formState, name, label, setFormState, type } = props
+  const {
+    className,
+    formState,
+    name,
+    label,
+    setFormState,
+    type,
+    ...rest
+  } = props
 
   return (
     <TextField
@@ -25,6 +33,7 @@ const FormSelect = (props) => {
       type={type}
       value={formState.values[name] || ''}
       variant="outlined"
+      {...rest}
     />
   )
 }

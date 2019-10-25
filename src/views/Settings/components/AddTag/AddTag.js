@@ -9,11 +9,10 @@ import {
   CardContent,
   CardActions,
   Divider,
-  Button,
-  TextField
+  Button
 } from '@material-ui/core'
-// form utilities
-import { hasError, handleChange } from '../../../../helpers/form'
+// custom material components
+import { FormTextField } from '../../../../components/CustomMaterialUI'
 import { styles } from './styles' // styles for the form
 import { schema } from './schema' // schema for the form data
 import { SendRequest } from '../../../../helpers/api' // for api request
@@ -73,40 +72,23 @@ const AddTag = (props) => {
         <CardHeader subheader="Add a new tag here" title="New Tag" />
         <Divider />
         <CardContent>
-          <TextField
-            error={hasError('name', formState)}
-            fullWidth
-            helperText={
-              hasError('name', formState) ? formState.errors.name[0] : null
-            }
+          <FormTextField
+            formState={formState}
             label="Name"
             name="name"
-            onChange={(e) => {
-              handleChange(e, formState, setFormState)
-            }}
+            setFormState={setFormState}
             type="text"
-            value={formState.values.name || ''}
-            variant="outlined"
           />
-          <TextField
+
+          <FormTextField
             className={clsx(classes.textField)}
-            error={hasError('description', formState)}
-            fullWidth
-            helperText={
-              hasError('description', formState)
-                ? formState.errors.description[0]
-                : null
-            }
+            formState={formState}
             label="Description"
             multiline
             name="description"
-            onChange={(e) => {
-              handleChange(e, formState, setFormState)
-            }}
             rows="5"
+            setFormState={setFormState}
             type="text"
-            value={formState.values.description || ''}
-            variant="outlined"
           />
         </CardContent>
         <Divider />
