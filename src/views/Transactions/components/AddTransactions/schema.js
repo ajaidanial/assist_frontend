@@ -15,5 +15,12 @@ export const schema = {
   },
   transaction_type: {
     presence: { allowEmpty: false, message: 'is required' }
+  },
+  amount: {
+    presence: { allowEmpty: false, message: 'is required' },
+    numericality: {
+      onlyInteger: true,
+      greaterThan: 0
+    }
   }
 }

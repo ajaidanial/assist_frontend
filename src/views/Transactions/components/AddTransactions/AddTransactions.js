@@ -97,7 +97,7 @@ const AddTransactions = (props) => {
             setFormState={setFormState}
             type="text"
           />
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
             <Grid item md={6} xs={6}>
               <FormSelect
                 className={classes.formSelect}
@@ -109,6 +109,16 @@ const AddTransactions = (props) => {
                 <MenuItem value="CREDIT">Credit</MenuItem>
                 <MenuItem value="DEBIT">Debit</MenuItem>
               </FormSelect>
+            </Grid>
+            <Grid item md={6} xs={6}>
+              <FormTextField
+                className={clsx(classes.textField)}
+                formState={formState}
+                label="Amount"
+                name="amount"
+                setFormState={setFormState}
+                type="number"
+              />
             </Grid>
           </Grid>
         </CardContent>
