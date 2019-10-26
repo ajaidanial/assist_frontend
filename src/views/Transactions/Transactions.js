@@ -6,6 +6,8 @@ import PropTypes from 'prop-types'
 import { AddTransactions } from './components'
 // helper to get the tags data
 import { getTagsData } from '../../helpers/app'
+// InfoBox | component which is common
+import { InfoBox } from '../../components/CustomMaterialUI'
 
 class Transactions extends Component {
   // state to store the tags_data
@@ -48,6 +50,24 @@ class Transactions extends Component {
               history={history}
               tags_data={this.state.tags_data}
             />
+          </Grid>
+          <Grid item md={7} xs={12}>
+            <Grid container spacing={3}>
+              <Grid item md={6} xs={6}>
+                <InfoBox
+                  sub_title="SINCE THIS MONTH"
+                  title="AMOUNT SPENT"
+                  value="test"
+                />
+              </Grid>
+              <Grid item md={6} xs={6}>
+                <InfoBox
+                  sub_title="REMAINING IN ACCOUNT"
+                  title="TOTAL AMOUNT"
+                  value="test"
+                />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </div>
