@@ -26,7 +26,7 @@ import { showAppToast } from '../../../../components' // for toast
 
 const AddTransactions = (props) => {
   // get props
-  const { className, history, ...rest } = props
+  const { className, history, tags_data, ...rest } = props
   // get the styles
   const classes = makeStyles(styles)()
   // the state for the whole component
@@ -129,8 +129,11 @@ const AddTransactions = (props) => {
             name="tags"
             setFormState={setFormState}
           >
-            <MenuItem value="Test">Test</MenuItem>
-            {/* TODO: add tags here */}
+            {tags_data.map((item) => (
+              <MenuItem key={item.id} value={item.name}>
+                {item.name}
+              </MenuItem>
+            ))}
           </FormMultiSelect>
         </CardContent>
         <Divider />
@@ -151,7 +154,8 @@ const AddTransactions = (props) => {
 
 AddTransactions.propTypes = {
   className: PropTypes.string,
-  history: PropTypes.object
+  history: PropTypes.object,
+  tags_data: PropTypes.array
 }
 
 export default AddTransactions

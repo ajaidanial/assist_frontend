@@ -1,0 +1,1 @@
+export { getTagsData } from './getTagsData'

@@ -11,7 +11,8 @@ import {
   ProfilePicture,
   BottomContent
 } from './components'
-import { SendRequest } from '../../helpers/api' // for api request
+// helper to get the tags data
+import { getTagsData } from '../../helpers/app'
 
 class Settings extends Component {
   // state to store the tags_data
@@ -22,23 +23,7 @@ class Settings extends Component {
 
   // To Update the tags once page is loaded
   componentDidMount() {
-    this.getTagsData()
-  }
-
-  /**
-   * To get the list of tags
-   * Also passed as a props to AddTag
-   */
-  getTagsData = () => {
-    SendRequest({}, 'GET', '/api/tags/').then((response) => {
-      if (response.success) {
-        const { data } = response
-        this.setState({
-          ...this.state,
-          tags_data: data
-        })
-      }
-    })
+    getTagsData(this)
   }
 
   render() {
@@ -67,7 +52,7 @@ class Settings extends Component {
             lastLocationKey: location.key // To save the location key || Prevents calling multiple times
           },
           () => {
-            this.getTagsData()
+            getTagsData(this)
           }
         )
       }
