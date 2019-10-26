@@ -129,15 +129,8 @@ const AddTransactions = (props) => {
             name="tags"
             setFormState={setFormState}
           >
-            <MenuItem value="CREDIT">Credit</MenuItem>
-            <MenuItem value="DEBIT">Debit</MenuItem>
-            <MenuItem value="DEBIT4">Debit4</MenuItem>
-            <MenuItem value="DEBIT1">Debit1</MenuItem>
-            <MenuItem value="DEBIT2">Debit2</MenuItem>
-            <MenuItem value="DEBIT3">Debit3</MenuItem>
-            <MenuItem value="DEBIT7">Debit7</MenuItem>
-            <MenuItem value="DEBIT6">Debit6</MenuItem>
-            <MenuItem value="DEBIT5">Debit5</MenuItem>
+            <MenuItem value="Test">Test</MenuItem>
+            {/* TODO: add tags here */}
           </FormMultiSelect>
         </CardContent>
         <Divider />

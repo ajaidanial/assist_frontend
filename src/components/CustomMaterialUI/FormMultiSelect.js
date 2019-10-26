@@ -35,6 +35,15 @@ const FormMultiSelect = (props) => {
     setLabelWidth(inputLabel.current.offsetWidth)
   }, [])
 
+  // defines the menu size for the select
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: 240
+      }
+    }
+  }
+
   return (
     <FormControl
       className={className}
@@ -48,6 +57,7 @@ const FormMultiSelect = (props) => {
           name: { name }
         }}
         labelWidth={labelWidth}
+        MenuProps={MenuProps}
         multiple
         onChange={(e) => {
           handleChange(e, formState, setFormState)
