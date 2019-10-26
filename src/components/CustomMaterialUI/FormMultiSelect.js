@@ -4,15 +4,29 @@ import {
   FormControl,
   InputLabel,
   Select,
-  FormHelperText
+  FormHelperText,
+  Chip
 } from '@material-ui/core'
 // helpers
 import { handleChange, hasError } from '../../helpers/form'
 import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
 
-const FormSelect = (props) => {
+const useStyles = makeStyles(() => ({
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  chip: {
+    margin: 3
+  }
+}))
+
+const FormMultiSelect = (props) => {
   // get from props
   const { children, className, formState, name, label, setFormState } = props
+  // styles
+  const classes = useStyles()
 
   // states and other stuff
   const inputLabel = React.useRef(null)
@@ -34,6 +48,7 @@ const FormSelect = (props) => {
           name: { name }
         }}
         labelWidth={labelWidth}
+        multiple
         onChange={(e) => {
           handleChange(e, formState, setFormState)
         }}
@@ -47,7 +62,14 @@ const FormSelect = (props) => {
             }
           })
         }}
-        value={formState.values[name] || ''}
+        renderValue={(selected) => (
+          <div className={classes.chips}>
+            {selected.map((value) => (
+              <Chip className={classes.chip} key={value} label={value} />
+            ))}
+          </div>
+        )}
+        value={formState.values[name] || []}
       >
         {children}
       </Select>
@@ -58,7 +80,7 @@ const FormSelect = (props) => {
   )
 }
 
-FormSelect.propTypes = {
+FormMultiSelect.propTypes = {
   children: PropTypes.any,
   className: PropTypes.any,
   formState: PropTypes.any,
@@ -67,4 +89,4 @@ FormSelect.propTypes = {
   setFormState: PropTypes.any
 }
 
-export default FormSelect
+export default FormMultiSelect

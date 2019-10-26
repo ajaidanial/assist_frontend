@@ -16,7 +16,8 @@ import {
 // custom material ui components
 import {
   FormSelect,
-  FormTextField
+  FormTextField,
+  FormMultiSelect
 } from '../../../../components/CustomMaterialUI'
 import { styles } from './styles' // styles for the form
 import { schema } from './schema' // schema for the form data
@@ -121,6 +122,23 @@ const AddTransactions = (props) => {
               />
             </Grid>
           </Grid>
+          <FormMultiSelect
+            className={classes.formSelect}
+            formState={formState}
+            label="Tags"
+            name="tags"
+            setFormState={setFormState}
+          >
+            <MenuItem value="CREDIT">Credit</MenuItem>
+            <MenuItem value="DEBIT">Debit</MenuItem>
+            <MenuItem value="DEBIT4">Debit4</MenuItem>
+            <MenuItem value="DEBIT1">Debit1</MenuItem>
+            <MenuItem value="DEBIT2">Debit2</MenuItem>
+            <MenuItem value="DEBIT3">Debit3</MenuItem>
+            <MenuItem value="DEBIT7">Debit7</MenuItem>
+            <MenuItem value="DEBIT6">Debit6</MenuItem>
+            <MenuItem value="DEBIT5">Debit5</MenuItem>
+          </FormMultiSelect>
         </CardContent>
         <Divider />
         <CardActions className={clsx(classes.cardFooter)}>
