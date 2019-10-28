@@ -55,16 +55,18 @@ class Transactions extends Component {
             <Grid container spacing={3}>
               <Grid item md={6} xs={6}>
                 <InfoBox
+                  avatar_type={1}
                   sub_title="SINCE THIS MONTH"
                   title="AMOUNT SPENT"
-                  value="test"
+                  value="1500"
                 />
               </Grid>
               <Grid item md={6} xs={6}>
                 <InfoBox
+                  avatar_type={2}
                   sub_title="REMAINING IN ACCOUNT"
                   title="TOTAL AMOUNT"
-                  value="test"
+                  value="12000"
                 />
               </Grid>
             </Grid>
@@ -81,3 +83,4 @@ Transactions.propTypes = {
 }
 
 export default withStyles(styles)(Transactions)
+// TODO: get values from server
