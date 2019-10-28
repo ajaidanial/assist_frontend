@@ -115,7 +115,7 @@ const SignIn = (props) => {
                   Sign in now
                 </Button>
                 <Typography color="textSecondary" variant="body1">
-                  Don't have an account?{' '}
+                  Don&apos;t have an account?{' '}
                   <Link component={RouterLink} to="/sign-up" variant="h6">
                     Sign up
                   </Link>

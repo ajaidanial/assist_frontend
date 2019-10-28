@@ -13,7 +13,7 @@ const TaskItem = (props) => {
 
   const { params } = props.match
 
-  return <div className={classes.root}>TaskItem Page => {params.id}</div>
+  return <div className={classes.root}>TaskItem Page {params.id}</div>
 }
 
 TaskItem.propTypes = {

@@ -13,7 +13,7 @@ const ReminderItem = (props) => {
 
   const { params } = props.match
 
-  return <div className={classes.root}>ReminderItem Page => {params.id}</div>
+  return <div className={classes.root}>ReminderItem Page {params.id}</div>
 }
 
 ReminderItem.propTypes = {

@@ -13,7 +13,7 @@ const TransactionItem = (props) => {
 
   const { params } = props.match
 
-  return <div className={classes.root}>TransactionItem Page => {params.id}</div>
+  return <div className={classes.root}>TransactionItem Page {params.id}</div>
 }
 
 TransactionItem.propTypes = {
