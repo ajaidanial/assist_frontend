@@ -6,8 +6,12 @@ import PropTypes from 'prop-types'
 import { AddTransactions } from './components'
 // helper to get the tags data
 import { getTagsData } from '../../helpers/app'
-// InfoBox | component which is common
-import { InfoBox } from '../../components/CustomMaterialUI'
+// component which is common
+import { InfoBox, SearchInput } from '../../components/CustomMaterialUI'
+// components from this page
+import { Analytics, TransactionsTable } from './components'
+// test data for TransactionsTable
+import mockData from './data'
 
 class Transactions extends Component {
   // state to store the tags_data
@@ -69,7 +73,17 @@ class Transactions extends Component {
                   value="12000"
                 />
               </Grid>
+              <Grid item md={12} xs={12}>
+                <Analytics />
+              </Grid>
             </Grid>
+          </Grid>
+          <Grid item md={12} xs={12}>
+            <SearchInput
+              className={classes.searchInput}
+              placeholder="Search transactions"
+            />
+            <TransactionsTable data={mockData} />
           </Grid>
         </Grid>
       </div>
@@ -84,3 +98,5 @@ Transactions.propTypes = {
 
 export default withStyles(styles)(Transactions)
 // TODO: get values from server
+// TODO: work on Transactional Analytics
+// TODO: work on Transactional Table
